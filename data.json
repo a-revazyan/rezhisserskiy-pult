@@ -250,7 +250,8 @@
     },
     {
      "src": "img/loc-vint-opera.webp",
-     "cap": "Локация в винтажном аниме, 9:16"
+     "cap": "Локация в винтажном аниме, 9:16",
+     "tall": true
     }
    ]
   },
@@ -1038,15 +1039,29 @@
   {
    "id": "m10",
    "type": "tilt",
-   "status": "Идея",
+   "status": "Проверено",
    "name": "Тилт снизу вверх",
    "sees": "Объектив поднимается от предмета к его владельцу или от входа к крыше; камера остаётся на той же высоте.",
    "phrase": "the camera stays at the same height and tilts up smoothly from [the object] to [its owner / the roof], stopping on [B]",
    "fov": "",
    "speed": "",
-   "style": "любой",
-   "notes": "Если нужна более высокая точка зрения, это уже подъём камеры (кран или пьедестал).",
-   "source": "Higgsfield Academy, урок 5"
+   "style": "кино",
+   "notes": "Если нужна более высокая точка зрения, это уже подъём камеры (кран или пьедестал). Проверено вариантом с подъёмом: от колеса камера поднимается и наклоняется вдоль фигуры к лицу со скоростью 1 км/ч, фокус ведёт передний край тела.",
+   "source": "",
+   "img": [
+    {
+     "src": "img/mv-tilt-a.webp",
+     "cap": "Начало: колесо у земли"
+    },
+    {
+     "src": "img/mv-tilt-b.webp",
+     "cap": "Вверх по фигуре"
+    },
+    {
+     "src": "img/mv-tilt-c.webp",
+     "cap": "Остановка на лице"
+    }
+   ]
   },
   {
    "id": "m11",
@@ -1113,15 +1128,22 @@
   {
    "id": "m15",
    "type": "angle",
-   "status": "Идея",
+   "status": "Проверено",
    "name": "Строго сверху",
    "sees": "Камера смотрит вертикально вниз: кадр превращается в карту мест, маршрутов и узоров.",
    "phrase": "a top-down view, the camera directly overhead looking straight down at [the table / the square]",
    "fov": "",
    "speed": "",
-   "style": "любой",
-   "notes": "Вид сверху может быть статичным, это не обязательно пролёт дрона.",
-   "source": "Higgsfield Academy, урок 5"
+   "style": "2D, аниме",
+   "notes": "Вид сверху может быть статичным, это не обязательно пролёт дрона. Проверено: вид сверху на героиню на кровати, кадр медленно поворачивается на 10°.",
+   "source": "",
+   "img": [
+    {
+     "src": "img/mv-top.webp",
+     "cap": "Строго сверху, кадр чуть поворачивается",
+     "tall": true
+    }
+   ]
   },
   {
    "id": "m16",
@@ -1158,15 +1180,281 @@
   {
    "id": "m18",
    "type": "static",
-   "status": "Идея",
+   "status": "Проверено",
    "name": "Осознанная статика",
    "sees": "Камера неподвижна, всё движение внутри кадра.",
    "phrase": "a locked-off camera: the composition stays fixed while [the action] unfolds inside it",
    "fov": "",
    "speed": "",
-   "style": "любой",
-   "notes": "Наш режим по умолчанию — движение; статику берём только как контраст к динамичным планам.",
-   "source": "Higgsfield Academy, урок 5"
+   "style": "2D, аниме",
+   "notes": "Наш режим по умолчанию — движение; статику берём только как контраст к динамичным планам. Проверено: камера стоит на асфальте в 20 см, грузовик въезжает и проносится через кадр, всё движение внутри.",
+   "source": "",
+   "img": [
+    {
+     "src": "img/mv-static-a.webp",
+     "cap": "Камера стоит на асфальте",
+     "tall": true
+    },
+    {
+     "src": "img/mv-static-b.webp",
+     "cap": "Грузовик въезжает в кадр",
+     "tall": true
+    },
+    {
+     "src": "img/mv-static-c.webp",
+     "cap": "Проносится, камера не дрогнула",
+     "tall": true
+    }
+   ]
+  },
+  {
+   "id": "m19",
+   "type": "other",
+   "status": "Проверено",
+   "name": "Камера внутри предмета",
+   "sees": "Камера сидит внутри предмета и смотрит наружу через отверстие: свет только из проёма, в него падает струя, заглядывает лицо.",
+   "phrase": "locked off at the bottom of [the fuel tank], pointing straight up at [the round filler opening], absolutely still; the camera sits in darkness, the only light entering through the hole above; [the nozzle drops in and petrol pours down at the lens], then [her face appears in the circle of light above, looking in]",
+   "fov": "107°",
+   "speed": "",
+   "style": "кино",
+   "notes": "Оптику пишем отдельно: 107°, объектив в 12–40 см от отверстия, круг по центру с лёгкой дисторсией, всё вокруг уходит в чёрное, капли на линзе остаются и преломляют свет. Сильнее всего работает склейкой с обычного плана снаружи: CUT 1 у колонки, CUT 2 уже внутри бака.",
+   "source": "",
+   "img": [
+    {
+     "src": "img/mv-inside-a.webp",
+     "cap": "Снаружи: план у колонки"
+    },
+    {
+     "src": "img/mv-inside-b.webp",
+     "cap": "Склейка внутрь бака: струя летит в объектив"
+    },
+    {
+     "src": "img/mv-inside-c.webp",
+     "cap": "В круге света заглядывает героиня"
+    }
+   ]
+  },
+  {
+   "id": "m20",
+   "type": "compound",
+   "status": "Проверено",
+   "name": "Пропустить мимо и рвануть следом",
+   "sees": "Камера лежит почти на асфальте, объект проносится мимо объектива, камера взлетает и пристраивается за ним.",
+   "phrase": "locked [10 cm] above [the road], static, looking straight down [the highway]; at [1.2s] [the motorcycle] enters from behind the camera on the left and blasts past the lens at [120 km/h], hard motion blur streaking the frame; from [2.0s] the camera lifts off and accelerates after it, rising to [1.2 m] and settling directly behind [the rider]; then holds steady while [the bike] pulls away",
+   "fov": "84° → 47°",
+   "speed": "120 км/ч",
+   "style": "кино",
+   "notes": "Угол обзора меняем в OPTICS: 84° у самой земли, 47° за героем. Первый кадр описываем подробно: асфальт крупно, трещины, разметка, горизонт и марево вдали, дорога пустая, звук мотора нарастает.",
+   "source": "",
+   "img": [
+    {
+     "src": "img/mv-chase-a.webp",
+     "cap": "Камера лежит на асфальте"
+    },
+    {
+     "src": "img/mv-chase-b.webp",
+     "cap": "Мотоцикл проносится мимо объектива"
+    },
+    {
+     "src": "img/mv-chase-c.webp",
+     "cap": "Камера взлетает и догоняет"
+    },
+    {
+     "src": "img/mv-chase-d.webp",
+     "cap": "Пристроилась за героиней"
+    }
+   ]
+  },
+  {
+   "id": "m21",
+   "type": "static",
+   "status": "Проверено",
+   "name": "Глазами камеры наблюдения",
+   "sees": "Тот же момент вдруг виден с потолочной камеры наблюдения: рыбий глаз, дешёвая матрица, таймкод в углу, камера не двигается ни на пиксель.",
+   "phrase": "seen through [the store's] ceiling security camera: locked to the ceiling mount, no pan, no tilt, no zoom; security fisheye character, strong barrel distortion, soft corners, slight vignette; surveillance-sensor look: crushed dynamic range, blown highlights at [the window], faint rolling noise, 12 fps stutter with duplicated frames; timestamp burned into the top-left corner: \"[CAM 02 12:04:37]\"",
+   "fov": "107°",
+   "speed": "",
+   "style": "кино",
+   "notes": "Таймкод пишем дословно в кавычках, мелким моноширинным шрифтом. Точку съёмки задаём картинкой-референсом, иначе модель ставит камеру где попало.",
+   "source": "",
+   "img": [
+    {
+     "src": "img/mv-cctv.webp",
+     "cap": "Рыбий глаз, таймкод в углу, камера не двигается"
+    }
+   ]
+  },
+  {
+   "id": "m22",
+   "type": "truck",
+   "status": "Проверено",
+   "name": "Проезд с остановками на лицах",
+   "sees": "Камера едет строго вбок вдоль ряда героев и замирает на каждом лице по очереди; крупность не меняется.",
+   "phrase": "locked at the height of [the seated heads], at a constant distance from [the counter], moving only sideways, a pure lateral dolly to the right: [0.0s–1.4s] held still on [A]; [1.4s–2.15s] slides right past [an empty stool]; [2.15s–3.6s] held still on [B]; [3.6s–4.8s] slides right past [two empty stools]; [4.8s–6.0s] held still on [C]. Each hold is completely static, each move eases out and eases in.",
+   "fov": "29°",
+   "speed": "",
+   "style": "кино",
+   "notes": "Паузы и скорость сняли с видео-референса движения и переписали в секунды. Хорошо для реакции нескольких героев на одну реплику.",
+   "source": "",
+   "img": [
+    {
+     "src": "img/mv-stops-a.webp",
+     "cap": "Остановка на первом"
+    },
+    {
+     "src": "img/mv-stops-b.webp",
+     "cap": "Проезд вбок и остановка на втором"
+    },
+    {
+     "src": "img/mv-stops-c.webp",
+     "cap": "Остановка на третьем"
+    }
+   ]
+  },
+  {
+   "id": "m23",
+   "type": "pull",
+   "status": "Проверено",
+   "name": "Отъезд из экрана",
+   "sees": "Камера резко отъезжает назад: картинка сжимается, в кадр входит рамка монитора, и оказывается, что всё это было на экране.",
+   "phrase": "sudden fast backward tracking move at [15 km/h]: [the meadow] image shrinks, the black plastic bezel of [the monitor] enters the frame on all four sides, then [the desk and the grey office] appear around it; the camera settles locked",
+   "fov": "47° → 63°",
+   "speed": "15 км/ч",
+   "style": "кино",
+   "notes": "Сюжетный поворот: мечта оказывается заставкой. Рамку экрана и место вокруг описываем заранее в SCENE CONTEXT. Модель сама ставит логотип на рамку монитора: если он не нужен, пишем в LOCKS «no logos on the monitor».",
+   "source": "",
+   "img": [
+    {
+     "src": "img/mv-screen-a.webp",
+     "cap": "Полный кадр: луг"
+    },
+    {
+     "src": "img/mv-screen-b.webp",
+     "cap": "Отъезд: в кадр входит рамка"
+    },
+    {
+     "src": "img/mv-screen-c.webp",
+     "cap": "Это монитор в офисе"
+    }
+   ]
+  },
+  {
+   "id": "m24",
+   "type": "pull",
+   "status": "Проверено",
+   "name": "Отлёт из детали",
+   "sees": "Обратный влёт: из макро детали камера плавно отходит к лицу героя, потом назад и вниз до общего плана, и становится видно, где мы.",
+   "phrase": "one continuous retreat: pulls straight back from [the crystal] at [1 km/h] and rises on a smooth crane path to [her] eye level, [60 cm] from [her face]; focus racks from [the facets] to [the ring] to [her eyes]; from [4.5s] a fast, elegant dolly back and down to [3 m] at knee height, a smooth decelerating curve, ending locked",
+   "fov": "12° → 29° → 47°",
+   "speed": "≈1 км/ч",
+   "style": "кино",
+   "notes": "Угол обзора расписываем по отрезкам: 12° макро, 29° на лице, 47° на общем. Для финала под логотип в конце уводим фокус в никуда, и всё превращается в боке.",
+   "source": "",
+   "img": [
+    {
+     "src": "img/mv-retreat-a.webp",
+     "cap": "Макро детали",
+     "tall": true
+    },
+    {
+     "src": "img/mv-retreat-b.webp",
+     "cap": "Отход к лицу",
+     "tall": true
+    },
+    {
+     "src": "img/mv-retreat-c.webp",
+     "cap": "Общий план: видно, где мы",
+     "tall": true
+    }
+   ]
+  },
+  {
+   "id": "m25",
+   "type": "pan",
+   "status": "Проверено",
+   "name": "Взгляд через бинокль",
+   "sees": "Субъективный кадр через театральный бинокль: две круглые прорези, внутри резко; взгляд ведёт панораму и останавливается на находке.",
+   "phrase": "point-of-view through [opera glasses]: the frame is masked by the black edge of the glasses, two overlapping round openings; the image inside is sharp and clear, with a very slight handheld tremor; the view pans right at a slow steady speed across [the boxes], then stops on [the young man looking back through his own glasses]",
+   "fov": "12°",
+   "speed": "",
+   "style": "2D, аниме",
+   "notes": "Вид через оптику пишем сразу резким, без наводки. Сам бинокль описываем размером и хватом: маленький театральный, без ручки, держат двумя руками.",
+   "source": "",
+   "img": [
+    {
+     "src": "img/mv-pov-a.webp",
+     "cap": "Через бинокль: две круглые прорези",
+     "tall": true
+    },
+    {
+     "src": "img/mv-pov-b.webp",
+     "cap": "Панорама по ложам",
+     "tall": true
+    },
+    {
+     "src": "img/mv-pov-c.webp",
+     "cap": "Остановка на находке",
+     "tall": true
+    }
+   ]
+  },
+  {
+   "id": "m26",
+   "type": "push",
+   "status": "Проверено",
+   "name": "Наезд склейками",
+   "sees": "Камера стоит, а ритм дают джамп-каты: каждая склейка на шаг ближе к героине, пока лицо не заполнит кадр.",
+   "phrase": "a rapid burst of hard jump cuts on a strict rhythmic grid, one every [0.46] seconds and accelerating at the end; each cut is locked off and [1.5 to 2] times closer than the one before, as if the camera lunges at [her] in jumps, until [her blurred face] fills the frame",
+   "fov": "47° → 29°",
+   "speed": "",
+   "style": "кино, ч/б",
+   "notes": "Сетку склеек привязываем к биту трека. Экспозиция может прыгать от склейки к склейке: так агрессивнее. Склейки в генерации уезжают на 0,1–0,2 с, на монтаже их легко подвинуть точно на удары.",
+   "source": "",
+   "img": [
+    {
+     "src": "img/mv-jump-a.webp",
+     "cap": "Первая склейка: далеко"
+    },
+    {
+     "src": "img/mv-jump-b.webp",
+     "cap": "Ближе"
+    },
+    {
+     "src": "img/mv-jump-c.webp",
+     "cap": "Ещё ближе"
+    },
+    {
+     "src": "img/mv-jump-d.webp",
+     "cap": "Лицо почти во весь кадр"
+    }
+   ]
+  },
+  {
+   "id": "m27",
+   "type": "crane",
+   "status": "Проверено",
+   "name": "Финальный отлёт вверх",
+   "sees": "Из крупной детали камера отъезжает назад вместе с героями, потом краном уходит вверх в высокий общий план. Подходит для финала.",
+   "phrase": "continuous pull-back-and-rise: starts locked tight on [the bell], pulls back while tracking backward at [the family's riding pace], widening as [all three] come into frame, then cranes upward and tilts down into a high aerial-style angle as [the street and houses] recede below, [the image fading evenly to white by the end]",
+   "fov": "",
+   "speed": "скорость героев",
+   "style": "кино",
+   "notes": "Финальный план под логотип или титр: в конце кадр ровно уходит в белое.",
+   "source": "",
+   "img": [
+    {
+     "src": "img/mv-rise-a.webp",
+     "cap": "Начало: крупно деталь"
+    },
+    {
+     "src": "img/mv-rise-b.webp",
+     "cap": "Отъезд вместе с героями"
+    },
+    {
+     "src": "img/mv-rise-c.webp",
+     "cap": "Кран вверх: высокий общий план"
+    }
+   ]
   }
  ],
  "rules": [
@@ -1343,7 +1631,21 @@
    "cat": "Референсы и теги",
    "text": "Мелкий предмет описываем размером и хватом: «маленький театральный бинокль без ручки, держат двумя руками». Вид через оптику — сразу резкий, без наводки.",
    "why": "После этого уточнения бинокль вышел как надо.",
-   "code": "R25"
+   "code": "R25",
+   "img": [
+    {
+     "src": "img/rule-binocular.webp",
+     "cap": "Маленький бинокль без ручки, двумя руками",
+     "tall": true,
+     "good": true
+    },
+    {
+     "src": "img/mv-pov-a.webp",
+     "cap": "Вид через оптику сразу резкий",
+     "tall": true,
+     "good": true
+    }
+   ]
   },
   {
    "id": "r59",

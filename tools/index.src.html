@@ -153,6 +153,8 @@ main{padding-block:28px 96px}
 .rfigs{grid-column:2;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;max-width:760px;padding-top:10px}
 .rfigs .fig img{aspect-ratio:16/9;object-fit:cover}
 .rfigs .fig figcaption{font-size:12.5px}
+.figs.tall{grid-template-columns:repeat(3,minmax(0,1fr));max-width:720px}
+.rfigs .fig.tall img{aspect-ratio:3/4}
 
 /* ---------- правила ---------- */
 .rgroup{padding-top:40px}
@@ -460,7 +462,7 @@ footer{border-top:1px solid var(--line)}
   function figs(list, cls) {
     var box = el("div", "figs" + (cls ? " " + cls : ""));
     list.forEach(function (x) {
-      var f = el("figure", "fig" + (x.bad ? " bad" : x.good ? " good" : ""));
+      var f = el("figure", "fig" + (x.bad ? " bad" : x.good ? " good" : "") + (x.tall ? " tall" : ""));
       var a = el("a"); a.href = safeImg(x.src); a.target = "_blank"; a.rel = "noopener";
       a.setAttribute("aria-label", "Открыть картинку: " + (x.cap || ""));
       a.append(pic(x.src, x.cap));
@@ -468,6 +470,7 @@ footer{border-top:1px solid var(--line)}
       if (x.cap) f.append(el("figcaption", null, x.cap));
       box.append(f);
     });
+    if (list.length && list.every(function (x) { return x.tall; })) box.classList.add("tall");
     return box;
   }
   function thumbFor(sec, it) {
