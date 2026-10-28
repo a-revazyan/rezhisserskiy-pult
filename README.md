@@ -25,3 +25,12 @@
 - `rules`: `id`, `code`, `cat` (одна из `rcats`), `text`, `why`.
 
 Поля в [квадратных скобках] в шаблонах и фразах подсвечиваются как места, которые меняют под сцену.
+
+## Как пересобрать
+
+`data.json` собирается из рабочей базы пульта скриптом `tools/build_public.py` (в публичную версию не попадают названия проектов и примеры из них), потом `tools/assemble.py` зашивает данные в `index.html`:
+
+```sh
+python3 tools/build_public.py <папка с выгрузкой базы> data.json
+python3 tools/assemble.py tools/index.src.html data.json index.html
+```
