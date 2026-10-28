@@ -195,13 +195,13 @@ main{padding-block:28px 96px}
 .menu-about{display:grid;gap:10px;max-width:50ch;padding-block:48px;color:var(--meta);font-size:15px;line-height:1.45}
 .menu-about a{color:var(--ink)}
 
-.sheet-body{display:grid;gap:28px;padding-block:clamp(20px,4vw,48px) 72px;max-width:980px}
+.sheet-body{display:grid;grid-template-columns:minmax(0,1fr);gap:28px;padding-block:clamp(20px,4vw,48px) 72px;max-width:980px}
 .eyebrow{font-size:13px;color:var(--meta);letter-spacing:.02em;font-variant-numeric:tabular-nums}
 .sheet h2{margin:8px 0 0;font:500 clamp(30px,4.6vw,56px)/1.04 var(--font);letter-spacing:-.03em;text-wrap:balance}
 .sheet .sub{color:var(--meta);font-size:17px;line-height:1.35;padding-top:12px}
 .tags{display:flex;flex-wrap:wrap;gap:6px}
 .tag{border:1px solid var(--line);padding:3px 9px;font-size:13px;line-height:1.3}
-.block{display:grid;gap:8px;max-width:72ch}
+.block{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;max-width:72ch;min-width:0}
 .block h3{margin:0;font:500 13px/1.3 var(--font);color:var(--meta);letter-spacing:.04em;text-transform:uppercase}
 .block p{font-size:17px;line-height:1.45}
 .block ul{margin:0;padding-left:20px;display:grid;gap:8px;font-size:16px;line-height:1.45}
