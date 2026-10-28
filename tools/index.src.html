@@ -113,6 +113,13 @@ main{padding-block:28px 96px}
 .ph-code .ph-h{color:var(--ink)}
 .slot{color:var(--signal)}
 .ph-diagram{flex:1;display:grid;place-items:center;min-height:0}
+/* превью с картинкой: кадр 16:9 сверху, ниже начало промта или второй кадр */
+.thumb.shots{display:flex;flex-direction:column}
+.thumb.shots .ph{position:relative;inset:auto;flex:1;min-height:0;padding-top:12px}
+.shot{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--hair)}
+.shot-arrow{position:relative;height:0;z-index:1}
+.shot-arrow span{position:absolute;left:50%;top:-13px;transform:translateX(-50%);width:26px;height:26px;display:grid;place-items:center;background:var(--bg);color:var(--signal);border:1px solid var(--line);font-size:14px;line-height:1}
+.thumb.shots .ph-meta.bottom{padding:8px 14px 0}
 .ph-diagram svg{width:88%;height:auto;max-height:100%}
 .sticker{position:absolute;left:10px;top:10px;z-index:2;padding:3px 7px;border:1px solid var(--ink);background:var(--bg);color:var(--ink);font:500 11px/1.2 var(--font);letter-spacing:.02em;text-transform:uppercase}
 .sticker.idea{color:var(--meta);border-color:var(--line)}
@@ -131,6 +138,21 @@ main{padding-block:28px 96px}
 .cap-meta{color:var(--meta);font-size:16px;line-height:1.2;overflow-wrap:anywhere}
 .cap-desc{color:var(--meta);font-size:14px;line-height:1.35;padding-top:6px}
 @media (max-width:639px){.cap-title{font-size:15px}.cap-meta{font-size:14px}.cap-desc{font-size:13px}}
+
+/* ---------- картинки в правилах и карточках ---------- */
+.figs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,280px),1fr));gap:18px 16px;max-width:980px}
+.figs.seq{grid-template-columns:repeat(auto-fill,minmax(min(100%,240px),1fr))}
+.fig{margin:0;display:grid;gap:6px;min-width:0;align-content:start}
+.fig a{display:block;outline:1px solid var(--hair);outline-offset:-1px;background:var(--soft)}
+.fig img{display:block;width:100%;height:auto}
+.fig figcaption{font-size:13px;line-height:1.35;color:var(--meta)}
+.fig.bad figcaption::before{content:"✕ ";color:var(--signal)}
+.fig.good figcaption::before{content:"✓ ";color:var(--ink)}
+.fig.bad a{outline:1px solid var(--signal)}
+.block:has(.figs){max-width:none}
+.rfigs{grid-column:2;display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px;max-width:760px;padding-top:10px}
+.rfigs .fig img{aspect-ratio:16/9;object-fit:cover}
+.rfigs .fig figcaption{font-size:12.5px}
 
 /* ---------- правила ---------- */
 .rgroup{padding-top:40px}
@@ -153,6 +175,7 @@ main{padding-block:28px 96px}
   .rule-code{grid-column:1}
   .rule-text{grid-column:1;font-size:16px}
   .rule-why{grid-column:1;font-size:13px}
+  .rfigs{grid-column:1;grid-template-columns:repeat(2,minmax(0,1fr))}
   .rule .star{grid-column:2;grid-row:1/span 3}
 }
 
@@ -426,7 +449,30 @@ footer{border-top:1px solid var(--line)}
     b.addEventListener("click", function (e) { e.stopPropagation(); var k = favKey(sec, it); if (fav.has(k)) fav.delete(k); else fav.add(k); saveFav(); render(); });
     return b;
   }
+  function pic(src, alt, cls) {
+    var im = document.createElement("img");
+    im.src = src; im.alt = alt || ""; im.loading = "lazy"; im.decoding = "async";
+    if (cls) im.className = cls;
+    return im;
+  }
+  function safeImg(p) { return typeof p === "string" && /^img\/[\w.-]+\.(webp|jpg|png)$/.test(p) ? p : null; }
+  function imgsOf(it) { return (it.img || []).filter(function (x) { return x && safeImg(x.src); }); }
+  function figs(list, cls) {
+    var box = el("div", "figs" + (cls ? " " + cls : ""));
+    list.forEach(function (x) {
+      var f = el("figure", "fig" + (x.bad ? " bad" : x.good ? " good" : ""));
+      var a = el("a"); a.href = safeImg(x.src); a.target = "_blank"; a.rel = "noopener";
+      a.setAttribute("aria-label", "Открыть картинку: " + (x.cap || ""));
+      a.append(pic(x.src, x.cap));
+      f.append(a);
+      if (x.cap) f.append(el("figcaption", null, x.cap));
+      box.append(f);
+    });
+    return box;
+  }
   function thumbFor(sec, it) {
+    var shots = imgsOf(it);
+    if (shots.length && sec !== "models") return thumbWithShots(sec, it, shots);
     var box = el("div", "thumb"), ph = el("div", "ph");
     if (sec === "templates") {
       var top = el("span", "ph-meta", it.cat);
@@ -445,6 +491,31 @@ footer{border-top:1px solid var(--line)}
       ph.append(el("div", "ph-top"), d, el("span", "ph-meta", (MOVE_TYPES[it.type] || "") + (bits ? " · " + bits : "")));
     }
     box.append(ph);
+    if (it.status) box.append(el("span", "sticker" + (it.status === "Идея" || it.status === "Заготовка" ? " idea" : ""), it.status));
+    return box;
+  }
+  function thumbWithShots(sec, it, shots) {
+    var box = el("div", "thumb shots");
+    if (sec === "moves" && shots.length > 1) {
+      box.append(pic(shots[0].src, shots[0].cap, "shot"));
+      var ar = el("div", "shot-arrow"); ar.append(el("span", null, "↓")); box.append(ar);
+      box.append(pic(shots[shots.length - 1].src, shots[shots.length - 1].cap, "shot"));
+      var bits = [MOVE_TYPES[it.type] || "", it.fov || "", it.speed || ""].filter(Boolean).join(" · ");
+      box.append(el("span", "ph-meta bottom", bits));
+    } else {
+      box.append(pic(shots[0].src, shots[0].cap, "shot"));
+      var ph = el("div", "ph");
+      if (sec === "templates") {
+        var pre = el("pre", "ph-code");
+        withSlots(String(it.body || "").split("\n").slice(0, 16).join("\n").slice(0, 600), pre);
+        ph.append(el("span", "ph-meta", it.cat + (shots.length > 1 ? " · " + shots.length + " примера" : "")), pre);
+      } else {
+        var d = el("div", "ph-diagram"); d.append(diagram(it.type));
+        var b2 = [it.fov || "", it.speed || ""].filter(Boolean).join(" · ");
+        ph.append(d, el("span", "ph-meta", (MOVE_TYPES[it.type] || "") + (b2 ? " · " + b2 : "")));
+      }
+      box.append(ph);
+    }
     if (it.status) box.append(el("span", "sticker" + (it.status === "Идея" || it.status === "Заготовка" ? " idea" : ""), it.status));
     return box;
   }
@@ -468,6 +539,8 @@ footer{border-top:1px solid var(--line)}
     var li = el("li", "rule");
     li.append(el("span", "rule-code", it.code), el("p", "rule-text", it.text), starBtn("rules", it, it.code));
     if (it.why) li.append(el("p", "rule-why", it.why));
+    var ri = imgsOf(it);
+    if (ri.length) { var fg = figs(ri); fg.className = "rfigs"; li.append(fg); }
     return li;
   }
 
@@ -617,6 +690,7 @@ footer{border-top:1px solid var(--line)}
       if (tg.childNodes.length) body.append(block("Модели", tg));
       if (it.purpose) body.append(block("Зачем", it.purpose));
       if (it.howto) body.append(block("Как пользоваться", it.howto));
+      if (imgsOf(it).length) body.append(block("Что получается", figs(imgsOf(it))));
       body.append(codeBox("Шаблон · поля в [скобках] меняем под сцену", it.body || ""));
       if (it.example) body.append(codeBox("Пример", it.example));
       if (it.notes) body.append(block("Оговорки", it.notes));
@@ -635,6 +709,7 @@ footer{border-top:1px solid var(--line)}
     } else {
       head.append(el("p", "sub", MOVE_TYPES[it.type] || ""));
       body.append(head);
+      if (imgsOf(it).length) body.append(block(imgsOf(it).length > 1 ? "Кадры из генерации, по порядку" : "Кадр из генерации", figs(imgsOf(it), "seq")));
       var bd = el("div", "big-diagram"); bd.append(diagram(it.type)); body.append(bd);
       if (it.sees) body.append(block("Что видит зритель", it.sees));
       if (it.phrase) body.append(codeBox("Фраза для блока CAMERA · [скобки] меняем под сцену", it.phrase));

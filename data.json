@@ -78,7 +78,21 @@
    "howto": "Вставлять дословно в блок STYLE, ближе к концу промта. К генерации прикладывать утверждённый лист-эталон манеры. Камера плавная, но всегда в движении; свет описывать по-живописному; в OPTICS писать deep focus.",
    "notes": "Не сработало: «slow and weighty motion» дала застывшую скуку, а киноприёмы (ручная камера, объектив, киносвет) — гиперреализм вместо живописи.",
    "body": "STYLE\nA grand 19th-century academic history painting in oil, come to life. Every frame is a finished oil painting on canvas: the figures, faces, hair and fabrics are modeled with visible soft brushstrokes and blended oil paint, the skin painted with warm and cool touches of color, the backgrounds laid in with looser, broader strokes; the matte surface of oil paint, a fine canvas weave, a thin glaze of varnish, a dense fine grain like a scan of an old art print. Everything from the nearest figure to the farthest plane is in clear focus, as in a painting. The figures move with full life and energy, while each moment stays a painted image, painted in exactly the same manner as the reference images; it never turns into live-action film or a photograph: no lens blur, no camera shake, no film look, no 3D render.",
-   "source": ""
+   "source": "",
+   "img": [
+    {
+     "src": "img/tpl-paint-1.webp",
+     "cap": "Кадр из видео с этой шапкой"
+    },
+    {
+     "src": "img/tpl-paint-2.webp",
+     "cap": "Кадр из видео с этой шапкой"
+    },
+    {
+     "src": "img/tpl-paint-3.webp",
+     "cap": "Кадр из видео с этой шапкой"
+    }
+   ]
   },
   {
    "id": "t02",
@@ -90,7 +104,13 @@
    "howto": "Ставить сразу после строки о раскладке листа. Прикладывать картинки-референсы стиля, а со второго листа ещё и утверждённый лист-эталон.",
    "notes": "Для листов «near-photographic» сработало, а для локаций и натюрмортов те же слова дали фото: там нужна шапка без фото-слов.",
    "body": "The whole sheet is a hyperrealistic 19th-century academic oil painting on canvas: near-photographic precision in the face, skin, hair, fabric and metal, smooth blended brushwork, a fine canvas weave, a thin glaze of varnish and a light even grain like a scan of an old art print. Painting manner exactly as in the attached images; take only their technique and level of realism, not their colors, subjects or lighting.",
-   "source": ""
+   "source": "",
+   "img": [
+    {
+     "src": "img/sheet-paint-a.webp",
+     "cap": "Лист-эталон манеры: спереди, со спины, портрет"
+    }
+   ]
   },
   {
    "id": "t03",
@@ -102,7 +122,17 @@
    "howto": "Открывает промт предмета. Прикладывать лист персонажа как образец манеры. Блок камеры заменять на VIEWPOINT без градусов.",
    "notes": "Фуд- и предметная фотография — самая сильная привычка моделей: слова hyperrealistic, macro, shallow depth, caustic, condensation сразу дают фото.",
    "body": "A 16:9 oil painting on canvas in the manner of 19th-century academic still-life painting, in exactly the same painting manner as the attached character sheet: realistic, detailed forms built with smooth blended brushwork, visible soft brushstrokes in the fabric, the background and the shadows, the matte surface of oil paint, a fine canvas weave, a thin glaze of varnish and a light even grain like a scan of an old art print. A close, intimate composition of a grand academic still life; the background is painted loosely and dissolves into warm atmospheric haze. It must read as a painting made by hand with a brush, not as a photograph: no photographic depth of field, no bokeh, no macro-lens look, no glossy food or product photography, no 3D render. Painting manner exactly as in the attached images; take only their technique and level of realism, not their colors, subjects or lighting. From the attached character sheet take only the painting manner, not the person, the clothes or the grey backdrop; no people appear in this image.",
-   "source": ""
+   "source": "",
+   "img": [
+    {
+     "src": "img/still-dishes.webp",
+     "cap": "Четыре блюда в одном кадре"
+    },
+    {
+     "src": "img/still-snow.webp",
+     "cap": "Предметный кадр в той же манере"
+    }
+   ]
   },
   {
    "id": "t04",
@@ -114,7 +144,17 @@
    "howto": "Вставлять дословно. Первой картинкой прикладывать утверждённый лист-эталон.",
    "notes": "Лица второстепенных героев описывать взрослыми и выразительными; застенчивость передавать позой и взглядом, а не «детскими» чертами.",
    "body": "ART STYLE: exactly as in the attached image — a vintage late-1980s / early-1990s comic book illustration with anime influence. Clean confident black ink linework, cel shading with crisp hard-edged shadow shapes, glossy highlight streaks on the hair, muted warm print colors with a subtle aged-paper texture. A mature grown-up face with realistic adult proportions.",
-   "source": ""
+   "source": "",
+   "img": [
+    {
+     "src": "img/sheet-vint-a.webp",
+     "cap": "Лист в стиле винтажного комикса"
+    },
+    {
+     "src": "img/sheet-vint-b.webp",
+     "cap": "Ещё один лист с той же шапкой"
+    }
+   ]
   },
   {
    "id": "t05",
@@ -150,7 +190,17 @@
    "howto": "Сначала делаем и утверждаем лист-эталон главного героя. К каждому следующему листу прикладываем эталон и пишем строку о том, что на нём другой человек. Под промтом сразу готовим @-якорь для Seedance: возраст, телосложение, лицо, волосы, одежда, детали по сторонам и «100% matches the reference».",
    "notes": "Для властных и злых героев не писать soft, delicate, rounded: характер задаём резкими чертами и выражением, выражение фиксируем в LOCKS. Грим эпохи пишем прямо и добавляем, что он не современный.",
    "body": "A 16:9 character reference sheet, three vertical panels of equal width placed side by side, separated by thin gutters, on a plain [mid-grey backdrop]. [STYLE HEADER]\n[From the second sheet on: The attached sheet of [NAME] shows a different person: take from it only the [painting manner / drawing style] and the panel layout, not the face or clothes.]\n\nCHARACTER: [role and era], a [man / woman] of about [AGE], [build, height]. [Face: shape, cheekbones, nose, mouth, eye color, brows, facial hair, skin tone and texture]. [Expression that defines the character]. [Hair: color, length, cut, styling]. [Hands, distinctive marks].\nWARDROBE: [top to bottom, each item = color + material + fit + details]; [accessories with their side: \"on the left wrist\"]; [shoes]. [Prop in hand, with the hand].\n\nPANEL 1 (left): full body, front view, head to toe. Standing straight, arms relaxed at the sides, feet hip-width apart, facing the viewer, [expression], eyes to the viewer.\nPANEL 2 (center): full body, back view, head to toe, same stance, same scale and framing as panel 1; [hair, back of the outfit, cloak] clearly visible.\nPANEL 3 (right): close-up portrait, front view, head and shoulders, [collar / jewelry] in frame, eyes to the viewer; [key face details] clearly readable.\n\nLIGHTING: soft even studio light, a large diffused key from the front slightly above, gentle fill, soft shadows on the floor.\nQUALITY: [quality line in the project's style], true-to-life color, sharp detail across the full figure, rich texture on [materials]; no digital or 3D-render look.\nLOCKS: the same [man / woman] with the identical face, hair, outfit and proportions in all three panels; heads aligned on one level and feet on one baseline in panels 1 and 2; [asymmetric details pinned to their side] in every view; plain backdrop with nothing else in frame, no text.",
-   "source": ""
+   "source": "",
+   "img": [
+    {
+     "src": "img/sheet-paint-b.webp",
+     "cap": "Лист по этому шаблону"
+    },
+    {
+     "src": "img/sheet-paint-c.webp",
+     "cap": "Следующий лист с эталоном манеры"
+    }
+   ]
   },
   {
    "id": "t08",
@@ -162,7 +212,17 @@
    "howto": "Картинка 1 — готовый лист-эталон стиля, картинка 2 — фото образа. Больше ничего к генерации не подключать. Шапку стиля вставлять дословно.",
    "notes": "В видео-промтах описание героя короче: одежду задаёт лист. Слова cropped, halter, camisole в видео не пишем: на них срабатывает фильтр.",
    "body": "A 16:9 character turnaround sheet. Two images are attached.\nIMAGE 1 is the style reference: match its [drawing style / painting manner], layout, panel borders and backdrop exactly, but draw a different [woman / man].\nIMAGE 2 is a photo used only for the outfit [and the pose]: redraw them in the style of image 1, not as a photo. The face [and hair] are an original character, not taken from the photo. [Leave out from the photo: sunglasses / the room / all logos.]\n\nFour panels of equal width side by side on [backdrop], separated by [panel borders]. No text, no labels, no captions anywhere.\n\nART STYLE: [STYLE HEADER, verbatim]\n\nCHARACTER: [age, ethnicity, build, skin]. [Face]. [Expression]. Hair: [color, length, texture].\nOUTFIT: [top to bottom with materials and details]; [accessories with their side].\n\nPANEL 1 (left): full body, front view, head to toe. [Weight on one hip, what each hand does], [look].\nPANEL 2: full body, side profile facing left, same pose and scale.\nPANEL 3: full body, back view, same pose and scale; [what is visible from behind].\nPANEL 4 (right): close-up portrait, head and shoulders, front view, [expression].\n\nLOCKS: the identical face, hair, outfit and proportions in all four panels; heads on one level and feet on one baseline in panels 1-3; [bag on the LEFT shoulder, bracelet on the RIGHT wrist] in every view; plain [backdrop] behind the figures, no scenery, no text.",
-   "source": ""
+   "source": "",
+   "img": [
+    {
+     "src": "img/sheet-vint-c.webp",
+     "cap": "Четыре панели: стиль с эталона, образ с фото"
+    },
+    {
+     "src": "img/sheet-vint-group.webp",
+     "cap": "Три героя на одном листе"
+    }
+   ]
   },
   {
    "id": "t09",
@@ -174,7 +234,25 @@
    "howto": "Локации пустые: массовку потом прописываем в видео-промте, сколько людей и где. Если важно, что за камерой, делаем отдельный обратный ракурс. Если место видно снаружи и изнутри, к виду изнутри прикладываем готовый вид снаружи.",
    "notes": "В живописи не писать фото-слова: hyperrealistic, straight verticals, evenly exposed, градусы объектива. Вместо блока камеры — VIEWPOINT без градусов.",
    "body": "A 16:9 [location reference image / three-panel location sheet]. [STYLE HEADER]\nLOCATION: [type, era, style, scale compared to human height: \"a ceiling twice a person's height\"]. [Time of day, weather]. Light: [sources and which side they enter from].\nLAYERS: foreground [..]; midground [..]; background [..]. Materials: [with wear: \"scuffed oak floorboards\"]. Key props: [object + fixed position].\nVIEWPOINT: [where the viewer stands, at eye level, what is seen; for photoreal add lens mm and FOV].\n[PANEL 2: reverse angle, 180° from panel 1, showing [..]. PANEL 3: key detail, mid-shot of [..].]\nQUALITY: [quality line in the project's style]; one time of day and one light direction throughout.\nLOCKS: the space is empty of people; props in identical positions; [no text / exact English signage in quotes].",
-   "source": ""
+   "source": "",
+   "img": [
+    {
+     "src": "img/loc-grove.webp",
+     "cap": "Пустая локация в живописи"
+    },
+    {
+     "src": "img/loc-atrium.webp",
+     "cap": "Интерьер в той же манере"
+    },
+    {
+     "src": "img/loc-deck-rev.webp",
+     "cap": "Обратный ракурс места"
+    },
+    {
+     "src": "img/loc-vint-opera.webp",
+     "cap": "Локация в винтажном аниме, 9:16"
+    }
+   ]
   },
   {
    "id": "t10",
@@ -186,7 +264,21 @@
    "howto": "Блюд в одном кадре не больше четырёх: так каждое читается, а модель их не путает. Предмет, который носит герой, рисуем с прикреплённым листом героя, чтобы дизайн совпал.",
    "notes": "В видео еду фиксируем словами «lies perfectly still», иначе приготовленная рыба шевелит плавником.",
    "body": "A 16:9 [product reference sheet, three panels side by side on a seamless mid-grey backdrop / still life]. [STYLE HEADER]\nOBJECT: [type, form, size compared to a hand]. Materials: [..]. Colors: [material + part]. Text: \"[EXACT TEXT]\" in [font character] on [position]. State: [new / worn / half-full]. [Mechanism step by step: how it opens or fastens].\nPANEL 1: front view, straight on.\nPANEL 2: three-quarter view at 45°.\nPANEL 3: [back view / detail of the mechanism].\nLIGHTING: [soft product lighting / light in the project's style from the left].\nLOCKS: the identical object at the same scale in all panels; text identical and legible; nothing else in frame.",
-   "source": ""
+   "source": "",
+   "img": [
+    {
+     "src": "img/prop-vint-ring.webp",
+     "cap": "Предмет в четырёх видах"
+    },
+    {
+     "src": "img/prop-vint-box.webp",
+     "cap": "Предмет с механизмом: как открывается"
+    },
+    {
+     "src": "img/still-paint.webp",
+     "cap": "Предмет в живописи"
+    }
+   ]
   },
   {
    "id": "t11",
@@ -198,7 +290,29 @@
    "howto": "Длительность в Higgsfield ставим руками, равной DURATION. Перед запуском проверяем, что у каждого @тега стоит ID элемента. Движение камеры берём из раздела «Движения камеры». Если в кадре вода, под промтом пишем «вырезать звук воды на монтаже».",
    "notes": "Планы по 3–6 с. Важное действие получает свой план. Слова-убийцы энергии (slow and weighty, lazy, steady) не пишем.",
    "body": "SCENE CONTEXT\n[1–2 sentences: what happens, where, when; who is where.]\n\nACTIVE REFERENCES\n@[tag]: [age + role + build + key visible features + action-critical details]. 100% matches the reference.\n\nLOCATION MAP\n[Foreground / midground / background; where the camera is; where light comes from; how many extras and where.]\n\nFIRST FRAME / BLOCKING\n[Who is where in the first frame and where they face; composition.]\n\nFORMAT MODE\nDURATION: [N]s. Timed multishot: hard cuts only at [t1]s, [t2]s. Each shot is one continuous take; the camera does not cut on its own.\n\nOPTICS\n0.0s to [t1]s: [shot size, FOV°]. [t1]s to [t2]s: [..]. No drift mid-segment.\n\nCAMERA\nShot 1: [move from the angle library, speed in km/h].\nShot 2: [..].\n\nACTION\n0.0s to [t1]s — [timed events; every person in frame acts].\n[t1]s HARD CUT\n[t1]s to [t2]s — [..]\n\nPERFORMANCE\n[Emotion through muscles and eye-line; who keeps lips closed.]\n\nPHYSICS\n[Mass, fabric, liquids; food lies perfectly still.]\n\nLIGHTING\n[Source, direction, how it falls on faces, in the style's own terms.]\n\nCOLOR GRADE\n[Palette as material + light + role.]\n\nWARDROBE\n[Extras' clothes; main characters exactly as on their references.]\n\nAUDIO\n[Timed diegetic sounds only; no music; no water sounds.] The soundtrack is only these diegetic sounds; nobody speaks words.\n\nSTYLE\n[STYLE HEADER, verbatim]\n\nOUTPUT SETTINGS\n[16:9 horizontal], [N] seconds, real-time.\n\nPOSITIVE LOCKS\n[Characters exactly as on their sheets; seating and sides; props in hands; counts.] Nobody speaks words. There is no on-screen text. Hard cuts only at [..].",
-   "source": ""
+   "source": "",
+   "img": [
+    {
+     "src": "img/multi-1.webp",
+     "cap": "План 1"
+    },
+    {
+     "src": "img/multi-2.webp",
+     "cap": "План 2"
+    },
+    {
+     "src": "img/multi-3.webp",
+     "cap": "План 3"
+    },
+    {
+     "src": "img/multi-4.webp",
+     "cap": "План 4"
+    },
+    {
+     "src": "img/multi-5.webp",
+     "cap": "План 5"
+    }
+   ]
   },
   {
    "id": "t12",
@@ -222,7 +336,17 @@
    "howto": "Если в готовом видео плохой только кусок, сначала монтаж или вставка, а не новая длинная генерация: бережём кредиты. Свет, грейд и стиль копируем из основной генерации слово в слово, чтобы вставка не выделялась.",
    "notes": "Движение массивного объекта (плот, корабль) общим планом снаружи глючит. Его показываем проплывающим фоном за героями.",
    "body": "SCENE CONTEXT\n[What this 4-second insert shows and where it sits in the scene.]\n\nACTIVE REFERENCES\n[Only the tags present in this shot.]\n\nLOCATION MAP\n[Positions, what is near and far, where the light comes from.]\n\nFIRST FRAME / BLOCKING\n[The opening composition.]\n\nFORMAT MODE\nDURATION: 4s. One continuous shot, the camera does not cut on its own.\n\nOPTICS\n[Shot size, FOV°]. No drift.\n\nCAMERA\n[One clear move with speed in km/h and the frame it ends on.]\n\nACTION\n0.0s to 4.0s — [one beat with a timed micro-event at about 2.5s].\n\n[LIGHTING, COLOR GRADE, AUDIO and STYLE copied word for word from the main generation.]\n\nPOSITIVE LOCKS\n[What must match the main generation.]",
-   "source": ""
+   "source": "",
+   "img": [
+    {
+     "src": "img/insert-a.webp",
+     "cap": "Начало вставки"
+    },
+    {
+     "src": "img/insert-b.webp",
+     "cap": "Конец: камера доехала до второй лодки"
+    }
+   ]
   },
   {
    "id": "t14",
@@ -719,7 +843,21 @@
    "speed": "5 → 4 км/ч",
    "style": "живопись",
    "notes": "Важное действие до подъёма даём отдельным планом: мелкую деталь в общем плане модель выбрасывает. В кино сюда можно добавить ручную камеру и плечи у самого объектива; в живописи и анимации эти слова уводят картинку в кино.",
-   "source": ""
+   "source": "",
+   "img": [
+    {
+     "src": "img/mv-crowd-a.webp",
+     "cap": "Сквозь толпу"
+    },
+    {
+     "src": "img/mv-crowd-b.webp",
+     "cap": "Подъём над шлемами"
+    },
+    {
+     "src": "img/mv-crowd-c.webp",
+     "cap": "Открылась панорама"
+    }
+   ]
   },
   {
    "id": "m02",
@@ -732,7 +870,21 @@
    "speed": "25 км/ч",
    "style": "живопись",
    "notes": "Объекты по бокам называем конкретно и со временем, иначе пролёт выходит пустым.",
-   "source": ""
+   "source": "",
+   "img": [
+    {
+     "src": "img/mv-fly-a.webp",
+     "cap": "Низко над водой"
+    },
+    {
+     "src": "img/mv-fly-b.webp",
+     "cap": "Объект проносится сбоку"
+    },
+    {
+     "src": "img/mv-fly-c.webp",
+     "cap": "Перемахивает через край"
+    }
+   ]
   },
   {
    "id": "m03",
@@ -745,7 +897,17 @@
    "speed": "1 км/ч",
    "style": "живопись",
    "notes": "Еду фиксируем словами «lies perfectly still», иначе готовая рыба шевелит плавником. Движение в кадре дают камера и руки.",
-   "source": ""
+   "source": "",
+   "img": [
+    {
+     "src": "img/mv-table-a.webp",
+     "cap": "Начало проезда"
+    },
+    {
+     "src": "img/mv-table-b.webp",
+     "cap": "Конец: передний план сместился"
+    }
+   ]
   },
   {
    "id": "m04",
@@ -758,7 +920,21 @@
    "speed": "8 км/ч",
    "style": "живопись",
    "notes": "Смену угла обзора пишем в OPTICS: «from 47° pushing into 18° by 2.0s». Перед запуском проверить, что у каждого @тега есть ID элемента: одна генерация упала из-за тега без привязки.",
-   "source": ""
+   "source": "",
+   "img": [
+    {
+     "src": "img/mv-push-a.webp",
+     "cap": "Средний план группы"
+    },
+    {
+     "src": "img/mv-push-b.webp",
+     "cap": "Влёт"
+    },
+    {
+     "src": "img/mv-push-c.webp",
+     "cap": "Сверхкрупно деталь"
+    }
+   ]
   },
   {
    "id": "m05",
@@ -771,7 +947,21 @@
    "speed": "10 км/ч",
    "style": "живопись",
    "notes": "Хорошо работает на 2–3 с между спокойными планами. Фон называем, чтобы вращение было видно.",
-   "source": ""
+   "source": "",
+   "img": [
+    {
+     "src": "img/mv-arc-a.webp",
+     "cap": "Начало дуги"
+    },
+    {
+     "src": "img/mv-arc-b.webp",
+     "cap": "Середина"
+    },
+    {
+     "src": "img/mv-arc-c.webp",
+     "cap": "Фон повернулся за людьми"
+    }
+   ]
   },
   {
    "id": "m06",
@@ -784,7 +974,13 @@
    "speed": "2 км/ч",
    "style": "живопись",
    "notes": "Механику детали пишем по шагам и со временем (крючок цепляет петлю на 9.6 с). Саму деталь лучше дать отдельным элементом.",
-   "source": ""
+   "source": "",
+   "img": [
+    {
+     "src": "img/mv-slide.webp",
+     "cap": "Кадр, к которому приходит движение"
+    }
+   ]
   },
   {
    "id": "m07",
@@ -797,7 +993,21 @@
    "speed": "3 км/ч",
    "style": "живопись",
    "notes": "Лицо ставим на треть кадра, с воздухом в сторону взгляда. Мужчину и женщину в таком кадре держим без тесного контакта: фильтр.",
-   "source": ""
+   "source": "",
+   "img": [
+    {
+     "src": "img/mv-ots-a.webp",
+     "cap": "Через плечо"
+    },
+    {
+     "src": "img/mv-ots-b.webp",
+     "cap": "Наезд"
+    },
+    {
+     "src": "img/mv-ots-c.webp",
+     "cap": "Лицо крупнее"
+    }
+   ]
   },
   {
    "id": "m08",
@@ -849,7 +1059,17 @@
    "speed": "",
    "style": "любой",
    "notes": "Параллакс работает, только если на переднем плане есть предмет.",
-   "source": "Higgsfield Academy, урок 5"
+   "source": "Higgsfield Academy, урок 5",
+   "img": [
+    {
+     "src": "img/mv-truck-a.webp",
+     "cap": "Начало бокового проезда"
+    },
+    {
+     "src": "img/mv-truck-b.webp",
+     "cap": "Ближние предметы прошли быстрее фона"
+    }
+   ]
   },
   {
    "id": "m12",
@@ -914,7 +1134,13 @@
    "speed": "",
    "style": "любой",
    "notes": "Смысл придаёт сцена: нижний ракурс подчёркивает рост и присутствие.",
-   "source": "Higgsfield Academy, урок 5"
+   "source": "Higgsfield Academy, урок 5",
+   "img": [
+    {
+     "src": "img/mv-low.webp",
+     "cap": "Камера снизу: фигуры весомее, за ними небо"
+    }
+   ]
   },
   {
    "id": "m17",
@@ -1131,14 +1357,34 @@
    "cat": "Листы",
    "text": "Новый лист пишем по шаблону утверждённого листа: тот же порядок блоков, шапка стиля дословно.",
    "why": "Своя перефразировка шапки дала стилистически другого персонажа, а лист по шаблону сработал.",
-   "code": "R27"
+   "code": "R27",
+   "img": [
+    {
+     "src": "img/sheet-vint-a.webp",
+     "cap": "Лист-шаблон"
+    },
+    {
+     "src": "img/sheet-vint-c.webp",
+     "cap": "Новый лист по шаблону"
+    }
+   ]
   },
   {
    "id": "r61",
    "cat": "Листы",
    "text": "К новому листу прикладываем утверждённый лист-эталон и пишем, что на нём другой человек: берём только манеру и раскладку.",
    "why": "Так весь каст серии вышел в одной манере с первым листом.",
-   "code": "R28"
+   "code": "R28",
+   "img": [
+    {
+     "src": "img/sheet-paint-a.webp",
+     "cap": "Эталон"
+    },
+    {
+     "src": "img/sheet-paint-b.webp",
+     "cap": "Следующий лист в той же манере"
+    }
+   ]
   },
   {
    "id": "r62",
@@ -1166,14 +1412,35 @@
    "cat": "Листы",
    "text": "В предметном кадре до четырёх предметов: так каждый читается, и видео-модель их не путает. Все предметы одного кадра занимают один референс-слот.",
    "why": "Больше четырёх блюд превращаются в кашу.",
-   "code": "R32"
+   "code": "R32",
+   "img": [
+    {
+     "src": "img/still-dishes.webp",
+     "cap": "Четыре блюда: каждое читается",
+     "good": true
+    }
+   ]
   },
   {
    "id": "r66",
    "cat": "Листы",
    "text": "Связанные локации генерируем цепочкой: к следующей прикладываем уже готовую (пруд → палуба → обратный ракурс), чтобы место совпало снаружи и изнутри.",
    "why": "Так место совпало на всех трёх картинках.",
-   "code": "R33"
+   "code": "R33",
+   "img": [
+    {
+     "src": "img/loc-lake.webp",
+     "cap": "1. Вид снаружи"
+    },
+    {
+     "src": "img/loc-deck.webp",
+     "cap": "2. Палуба, к ней приложен вид снаружи"
+    },
+    {
+     "src": "img/loc-deck-rev.webp",
+     "cap": "3. Обратный ракурс, приложены оба"
+    }
+   ]
   },
   {
    "id": "r13",
@@ -1264,7 +1531,14 @@
    "cat": "Стиль и динамика",
    "text": "Важное действие получает свой план, крупность и таймкод.",
    "why": "Мальчик на плечах в общем плане со спины пропал.",
-   "code": "R46"
+   "code": "R46",
+   "img": [
+    {
+     "src": "img/tpl-paint-1.webp",
+     "cap": "Своё время и свой план: мальчик на плечах читается",
+     "good": true
+    }
+   ]
   },
   {
    "id": "r22",
@@ -1278,7 +1552,19 @@
    "cat": "Стиль и динамика",
    "text": "В живописи не пишем фото-слова: hyperrealistic, near-photographic (кроме листов), shallow depth, macro, caustic, condensation, straight verticals, градусы объектива.",
    "why": "Первые натюрморты и локации вышли фотографиями.",
-   "code": "R48"
+   "code": "R48",
+   "img": [
+    {
+     "src": "img/still-photo.webp",
+     "cap": "С фото-словами: вышла фотография",
+     "bad": true
+    },
+    {
+     "src": "img/still-paint.webp",
+     "cap": "Без них: живопись",
+     "good": true
+    }
+   ]
   },
   {
    "id": "r24",
@@ -1348,7 +1634,19 @@
    "cat": "Стиль и динамика",
    "text": "В живописи крупные планы лиц ночью с огнями на фоне уходят в кино: огни размываются в боке, кожа становится фотографической. Самый тесный план — крупный 29–35°, без сверхкрупных глаз; огни на фоне пишем «painted as small clear dabs of color, sharp, no blurred circles of light»; лицо — «painted like a portrait by an academic master, visible brushstrokes, matte skin»; в LOCKS «no bokeh».",
    "why": "В серии крупный план героя и сверхкрупные глаза вышли живым кино, а общие планы остались живописью. Вставка с крупностью 35° и огнями «мазками» вышла живописью, без боке.",
-   "code": "R58"
+   "code": "R58",
+   "img": [
+    {
+     "src": "img/rule-bokeh-bad.webp",
+     "cap": "Сверхкрупно с огнями: ушло в кино",
+     "bad": true
+    },
+    {
+     "src": "img/rule-bokeh-good.webp",
+     "cap": "35° и огни «мазками»: живопись",
+     "good": true
+    }
+   ]
   },
   {
    "id": "r27",

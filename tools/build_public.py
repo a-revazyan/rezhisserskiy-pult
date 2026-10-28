@@ -203,6 +203,49 @@ for i, r in enumerate(rules, 1):
     r["code"] = "R%02d" % i
     del r["_o"]
 
+# ---------------------------------------------------------------- images (img/*.webp, all from real generations)
+def I(name, cap):
+    return {"src": "img/" + name + ".webp", "cap": cap}
+
+T_IMG = {
+    "t01": [I("tpl-paint-1", "Кадр из видео с этой шапкой"), I("tpl-paint-2", "Кадр из видео с этой шапкой"), I("tpl-paint-3", "Кадр из видео с этой шапкой")],
+    "t02": [I("sheet-paint-a", "Лист-эталон манеры: спереди, со спины, портрет")],
+    "t03": [I("still-dishes", "Четыре блюда в одном кадре"), I("still-snow", "Предметный кадр в той же манере")],
+    "t04": [I("sheet-vint-a", "Лист в стиле винтажного комикса"), I("sheet-vint-b", "Ещё один лист с той же шапкой")],
+    "t07": [I("sheet-paint-b", "Лист по этому шаблону"), I("sheet-paint-c", "Следующий лист с эталоном манеры")],
+    "t08": [I("sheet-vint-c", "Четыре панели: стиль с эталона, образ с фото"), I("sheet-vint-group", "Три героя на одном листе")],
+    "t09": [I("loc-grove", "Пустая локация в живописи"), I("loc-atrium", "Интерьер в той же манере"), I("loc-deck-rev", "Обратный ракурс места"), I("loc-vint-opera", "Локация в винтажном аниме, 9:16")],
+    "t10": [I("prop-vint-ring", "Предмет в четырёх видах"), I("prop-vint-box", "Предмет с механизмом: как открывается"), I("still-paint", "Предмет в живописи")],
+    "t11": [I("multi-1", "План 1"), I("multi-2", "План 2"), I("multi-3", "План 3"), I("multi-4", "План 4"), I("multi-5", "План 5")],
+    "t13": [I("insert-a", "Начало вставки"), I("insert-b", "Конец: камера доехала до второй лодки")],
+}
+M_IMG = {
+    "m01": [I("mv-crowd-a", "Сквозь толпу"), I("mv-crowd-b", "Подъём над шлемами"), I("mv-crowd-c", "Открылась панорама")],
+    "m02": [I("mv-fly-a", "Низко над водой"), I("mv-fly-b", "Объект проносится сбоку"), I("mv-fly-c", "Перемахивает через край")],
+    "m03": [I("mv-table-a", "Начало проезда"), I("mv-table-b", "Конец: передний план сместился")],
+    "m04": [I("mv-push-a", "Средний план группы"), I("mv-push-b", "Влёт"), I("mv-push-c", "Сверхкрупно деталь")],
+    "m05": [I("mv-arc-a", "Начало дуги"), I("mv-arc-b", "Середина"), I("mv-arc-c", "Фон повернулся за людьми")],
+    "m06": [I("mv-slide", "Кадр, к которому приходит движение")],
+    "m07": [I("mv-ots-a", "Через плечо"), I("mv-ots-b", "Наезд"), I("mv-ots-c", "Лицо крупнее")],
+    "m11": [I("mv-truck-a", "Начало бокового проезда"), I("mv-truck-b", "Ближние предметы прошли быстрее фона")],
+    "m16": [I("mv-low", "Камера снизу: фигуры весомее, за ними небо")],
+}
+R_IMG = {
+    "r23": [dict(I("still-photo", "С фото-словами: вышла фотография"), bad=True), dict(I("still-paint", "Без них: живопись"), good=True)],
+    "r89": [dict(I("rule-bokeh-bad", "Сверхкрупно с огнями: ушло в кино"), bad=True), dict(I("rule-bokeh-good", "35° и огни «мазками»: живопись"), good=True)],
+    "r21": [dict(I("tpl-paint-1", "Своё время и свой план: мальчик на плечах читается"), good=True)],
+    "r65": [dict(I("still-dishes", "Четыре блюда: каждое читается"), good=True)],
+    "r66": [I("loc-lake", "1. Вид снаружи"), I("loc-deck", "2. Палуба, к ней приложен вид снаружи"), I("loc-deck-rev", "3. Обратный ракурс, приложены оба")],
+    "r61": [I("sheet-paint-a", "Эталон"), I("sheet-paint-b", "Следующий лист в той же манере")],
+    "r60": [I("sheet-vint-a", "Лист-шаблон"), I("sheet-vint-c", "Новый лист по шаблону")],
+}
+for t in templates:
+    if t["id"] in T_IMG: t["img"] = T_IMG[t["id"]]
+for m in moves:
+    if m["id"] in M_IMG: m["img"] = M_IMG[m["id"]]
+for r in rules:
+    if r["id"] in R_IMG: r["img"] = R_IMG[r["id"]]
+
 data = {
     "updated": "2026-10-28",
     "sections": [
@@ -216,7 +259,7 @@ data = {
     "rcats": RCATS, "rinfo": RINFO,
     "templates": templates, "models": models, "moves": moves, "rules": rules,
 }
-os.makedirs(os.path.dirname(OUT), exist_ok=True)
+os.makedirs(os.path.dirname(OUT) or ".", exist_ok=True)
 with open(OUT, "w", encoding="utf-8") as f:
     json.dump(data, f, ensure_ascii=False, indent=1)
 print(len(templates), "templates,", len(models), "models,", len(moves), "moves,", len(rules), "rules")
