@@ -259,6 +259,12 @@ main{padding-block:28px 96px}
 .big-diagram{max-width:560px;aspect-ratio:16/9;background:var(--soft);outline:1px solid var(--hair);outline-offset:-1px;display:grid;place-items:center}
 .big-diagram svg{width:82%;height:auto}
 .big-diagram:has(svg[aria-label^="Схема света"]) svg{width:100%}
+.dl-row{display:flex;flex-wrap:wrap;gap:10px}
+.dl-row a{text-decoration:none;display:inline-flex;align-items:center;padding:9px 16px;font-size:15px}
+.dl-row a.ghost{color:var(--ink)}
+.block ol.how{margin:0;padding-left:22px;display:grid;gap:8px;font-size:16px;line-height:1.45}
+.block ol.how li::marker{color:var(--meta)}
+.how-src{font-size:14px;color:var(--meta);padding-top:4px}
 .diag-cap{max-width:560px;margin-top:-16px;color:var(--meta);font-size:13px;line-height:1.4}
 .pager{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:20px;max-width:980px}
 .pager button{border:0;background:none;padding:4px 0;cursor:pointer;text-align:left;display:grid;gap:2px;max-width:46%}
@@ -305,7 +311,7 @@ footer{border-top:1px solid var(--line)}
 </header>
 
 <section class="wrap intro" aria-label="О пульте">
-  <p class="lede">Шаблоны промтов, модели Higgsfield, движения камеры, свет и правила для видео-нейросетей <span>из практики канала «дизайн ремесленник», в одном месте.</span></p>
+  <p class="lede">Шаблоны промтов, модели Higgsfield, движения камеры, свет, скиллы для Claude и правила для видео-нейросетей <span>из практики канала «дизайн ремесленник», в одном месте.</span></p>
   <p class="stats" id="stats">&nbsp;</p>
 </section>
 
@@ -406,14 +412,14 @@ footer{border-top:1px solid var(--line)}
   "use strict";
   var data;
   try { data = JSON.parse(document.getElementById("seed").textContent); } catch (e) { data = null; }
-  if (!data || !data.sections) data = { sections: [], templates: [], models: [], moves: [], light: [], rules: [], tcats: [], gcats: [], rcats: [], lcats: [], rinfo: {} };
+  if (!data || !data.sections) data = { sections: [], templates: [], models: [], moves: [], light: [], skills: [], rules: [], tcats: [], gcats: [], rcats: [], lcats: [], scats: [], rinfo: {} };
 
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var state = { q: "", sec: "all", topic: "all", fav: false };
   var MOVE_TYPES = { push: "Наезд и влёт", pull: "Отъезд", arc: "Дуга", crane: "Кран", track: "Проезд", truck: "Сдвиг вбок", pan: "Панорама", tilt: "Тилт", zoom: "Зум", dollyzoom: "Долли-зум", fly: "Пролёт", slide: "Скольжение", ots: "Через плечо", whip: "Вип-пан", roll: "Ролл", angle: "Угол камеры", hand: "Ручная камера", compound: "Составное", static: "Статика", other: "Другое" };
-  var NOUN = { templates: ["шаблон", "шаблона", "шаблонов"], models: ["запись", "записи", "записей"], moves: ["движение", "движения", "движений"], light: ["схема", "схемы", "схем"], rules: ["правило", "правила", "правил"] };
-  var KIND = { templates: "Шаблон", models: "Модель", moves: "Движение камеры", light: "Свет" };
-  var CODE = { templates: "T", models: "G", moves: "M", light: "L" };
+  var NOUN = { templates: ["шаблон", "шаблона", "шаблонов"], models: ["запись", "записи", "записей"], moves: ["движение", "движения", "движений"], light: ["схема", "схемы", "схем"], skills: ["скилл", "скилла", "скиллов"], rules: ["правило", "правила", "правил"] };
+  var KIND = { templates: "Шаблон", models: "Модель", moves: "Движение камеры", light: "Свет", skills: "Скилл" };
+  var CODE = { templates: "T", models: "G", moves: "M", light: "L", skills: "S" };
   var FAVKEY = "pult:fav";
   var fav = new Set();
   try { fav = new Set(JSON.parse(localStorage.getItem(FAVKEY) || "[]")); } catch (e) {}
@@ -434,6 +440,7 @@ footer{border-top:1px solid var(--line)}
     if (sec === "models") return data.gcats;
     if (sec === "rules") return data.rcats;
     if (sec === "light") return data.lcats || [];
+    if (sec === "skills") return data.scats || [];
     var seen = []; data.moves.forEach(function (m) { if (seen.indexOf(m.type) < 0) seen.push(m.type); }); return seen;
   }
 
@@ -449,6 +456,7 @@ footer{border-top:1px solid var(--line)}
     if (sec === "models") return [it.name, it.cat, it.models, it.when, it.limits, (it.rules || []).join(" "), it.ours, it.source].join(" ");
     if (sec === "moves") return [it.name, MOVE_TYPES[it.type], it.sees, it.phrase, it.fov, it.speed, it.style, it.notes].join(" ");
     if (sec === "light") return [it.name, it.en, it.cat, it.sees, it.when, it.phrase, it.notes, "свет"].join(" ");
+    if (sec === "skills") return [it.title, it.name, it.cat, it.what, it.when, (it.inside || []).join(" "), (it.examples || []).join(" "), it.notes, it.author, "скилл skill claude"].join(" ");
     return [it.text, it.why, it.cat, it.code].join(" ");
   }
   function matches(sec, it, ignoreTopic) {
@@ -587,6 +595,7 @@ footer{border-top:1px solid var(--line)}
     if (cls) im.className = cls;
     return im;
   }
+  function safeFile(p) { return typeof p === "string" && /^skills\/[\w.-]+(\/SKILL\.md|\.zip)$/.test(p) ? p : null; }
   function safeImg(p) { return typeof p === "string" && /^img\/[\w.-]+\.(webp|jpg|png)$/.test(p) ? p : null; }
   function imgsOf(it) { return (it.img || []).filter(function (x) { return x && safeImg(x.src); }); }
   function figs(list, cls) {
@@ -618,6 +627,11 @@ footer{border-top:1px solid var(--line)}
       var words = el("div", "ph-words");
       (names.length ? names : [it.name]).forEach(function (n) { words.append(el("span", "ph-word", n)); });
       ph.append(el("div", "ph-top"), words, el("span", "ph-meta", it.cat + (it.status === "Курс" ? " · Higgsfield Academy" : "")));
+    } else if (sec === "skills") {
+      var sw = el("div", "ph-words");
+      sw.append(el("span", "ph-word", it.title));
+      var nm = el("pre", "ph-code"); nm.textContent = "/" + it.name + "\n\n" + (it.inside || []).map(function (x) { return "· " + x; }).join("\n"); 
+      ph.append(el("div", "ph-top"), sw, nm, el("span", "ph-meta", it.cat + (it.ours ? (it.size ? " · ZIP " + it.size : "") : " · автор: " + (it.author || ""))));
     } else if (sec === "light") {
       var dl = el("div", "ph-diagram"); dl.append(lightDiagram(it));
       ph.append(el("div", "ph-top"), dl, el("span", "ph-meta", it.en + " · " + it.cat));
@@ -628,6 +642,7 @@ footer{border-top:1px solid var(--line)}
     }
     box.append(ph);
     if (it.status) box.append(el("span", "sticker" + (it.status === "Идея" || it.status === "Заготовка" ? " idea" : ""), it.status));
+    if (sec === "skills") box.append(el("span", "sticker" + (it.ours ? "" : " idea"), it.ours ? "Наш" : "Не наш"));
     return box;
   }
   function thumbWithShots(sec, it, shots) {
@@ -660,15 +675,16 @@ footer{border-top:1px solid var(--line)}
   }
   function cardFor(sec, it) {
     var a = el("article", "item");
-    a.append(thumbFor(sec, it), starBtn(sec, it, it.name));
+    a.append(thumbFor(sec, it), starBtn(sec, it, sec === "skills" ? it.title : it.name));
     var cap = el("div", "cap");
-    var h = el("h3", "cap-title"), b = el("button", null, it.name); b.type = "button";
+    var h = el("h3", "cap-title"), b = el("button", null, sec === "skills" ? it.title : it.name); b.type = "button";
     b.addEventListener("click", function () { openSheet(sec, it.id); });
     h.append(b); cap.append(h);
     var meta, desc;
     if (sec === "templates") { meta = codeOf(sec, it) + " · " + String(it.models || "").split(/\s*,\s*/)[0]; desc = it.purpose; }
     else if (sec === "models") { meta = codeOf(sec, it) + " · " + it.cat; desc = it.when; }
     else if (sec === "light") { meta = codeOf(sec, it) + " · " + it.en; desc = it.sees; }
+    else if (sec === "skills") { meta = codeOf(sec, it) + " · " + it.name; desc = it.what; }
     else { meta = codeOf(sec, it) + (it.style ? " · " + it.style : ""); desc = it.sees; }
     cap.append(el("p", "cap-meta", meta));
     if (desc) cap.append(el("p", "cap-desc", desc));
@@ -718,7 +734,7 @@ footer{border-top:1px solid var(--line)}
     });
     return wrap;
   }
-  var ORDER = ["templates", "models", "moves", "light", "rules"];
+  var ORDER = ["templates", "models", "moves", "light", "skills", "rules"];
   var shownLists = {};
   function render() {
     var list = $("#list"); list.replaceChildren();
@@ -760,7 +776,7 @@ footer{border-top:1px solid var(--line)}
     var empty = $("#empty");
     empty.hidden = shown > 0;
     if (!empty.hidden) $("#empty-text").textContent = state.fav && !fav.size ? "Пока ничего не сохранено. Нажмите звёздочку у карточки или правила, и оно появится здесь." : (state.q ? "По запросу «" + state.q + "» ничего не нашлось. Попробуйте другое слово или сбросьте фильтры." : "В этом наборе фильтров пусто.");
-    $("#stats").textContent = [data.templates.length + " " + plural(data.templates.length, NOUN.templates), data.models.length + " " + plural(data.models.length, NOUN.models) + " о моделях", data.moves.length + " " + plural(data.moves.length, NOUN.moves) + " камеры", (data.light || []).length + " " + plural((data.light || []).length, NOUN.light) + " света", data.rules.length + " " + plural(data.rules.length, NOUN.rules)].join(" · ") + " · обновлено " + fmtDate(data.updated);
+    $("#stats").textContent = [data.templates.length + " " + plural(data.templates.length, NOUN.templates), data.models.length + " " + plural(data.models.length, NOUN.models) + " о моделях", data.moves.length + " " + plural(data.moves.length, NOUN.moves) + " камеры", (data.light || []).length + " " + plural((data.light || []).length, NOUN.light) + " света", (data.skills || []).length + " " + plural((data.skills || []).length, NOUN.skills), data.rules.length + " " + plural(data.rules.length, NOUN.rules)].join(" · ") + " · обновлено " + fmtDate(data.updated);
     $("#checked").textContent = fmtDate(data.updated);
     $("#fav-count").textContent = String(fav.size);
     $("#t-fav").setAttribute("aria-pressed", state.fav ? "true" : "false");
@@ -846,6 +862,36 @@ footer{border-top:1px solid var(--line)}
       if (it.example) body.append(codeBox("Пример", it.example));
       if (it.ours) body.append(block("На практике", it.ours));
       var sb2 = sourceBlock(it); if (sb2) body.append(sb2);
+    } else if (sec === "skills") {
+      h.textContent = it.title;
+      head.append(el("p", "sub", it.name + " · " + it.cat));
+      body.append(head);
+      var dlw = el("div", "dl-row");
+      var zf = safeFile(it.file), mf = safeFile(it.md), au = safeUrl(it.authorUrl || "");
+      if (zf) { var za = el("a", "copy", "Скачать ZIP" + (it.size ? " · " + it.size : "")); za.href = zf; za.setAttribute("download", ""); dlw.append(za); }
+      if (mf) { var ma = el("a", "ghost", "Открыть SKILL.md"); ma.href = mf; ma.target = "_blank"; ma.rel = "noopener"; dlw.append(ma); }
+      if (!zf && au) { var aa = el("a", "copy", "Скачать у автора на GitHub"); aa.href = au; aa.target = "_blank"; aa.rel = "noopener noreferrer"; dlw.append(aa); }
+      if (dlw.childNodes.length) body.append(dlw);
+      if (!it.ours) {
+        var ap = el("p"); ap.append(document.createTextNode("Скилл не наш. Автор — "));
+        if (au) { var al = el("a", null, it.author || au); al.href = au; al.target = "_blank"; al.rel = "noopener noreferrer"; ap.append(al); } else ap.append(document.createTextNode(it.author || "неизвестен"));
+        if (it.basedOn) ap.append(document.createTextNode(", " + it.basedOn));
+        ap.append(document.createTextNode("."));
+        body.append(block("Автор", ap));
+      }
+      if (it.what) body.append(block("Что делает", it.what));
+      if (it.when) body.append(block("Когда срабатывает", it.when));
+      if (it.inside && it.inside.length) { var iu = el("ul"); it.inside.forEach(function (x) { iu.append(el("li", null, x)); }); body.append(block("Что внутри", iu)); }
+      if (it.examples && it.examples.length) { var eu = el("ul"); it.examples.forEach(function (x) { eu.append(el("li", null, "«" + x + "»")); }); body.append(block("Как попросить", eu)); }
+      if (it.notes) body.append(block("Оговорки", it.notes));
+      if (data.skillHow && data.skillHow.length) {
+        var hu = el("ol", "how"); data.skillHow.forEach(function (x) { hu.append(el("li", null, x)); });
+        var hs = safeUrl(data.skillHowSrc || "");
+        var hb = block("Как установить", hu);
+        if (hs) { var hp = el("p", "how-src"); var hl = el("a", null, "Справка Claude о скиллах"); hl.href = hs; hl.target = "_blank"; hl.rel = "noopener noreferrer"; hp.append(hl); hb.append(hp); }
+        body.append(hb);
+      }
+      if (it.url) { var su = safeUrl(it.url); if (su) { var sp = el("p"), sl = el("a", null, su.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")); sl.href = su; sl.target = "_blank"; sl.rel = "noopener noreferrer"; sp.append(sl); body.append(block("Источник", sp)); } }
     } else if (sec === "light") {
       head.append(el("p", "sub", it.en + " · " + it.cat));
       body.append(head);
@@ -873,7 +919,7 @@ footer{border-top:1px solid var(--line)}
     /* соседние карточки в текущем отборе */
     var seq = (shownLists[sec] && shownLists[sec].length ? shownLists[sec] : its), i = seq.findIndex(function (x) { return x.id === id; });
     var pager = $("#pager"); pager.replaceChildren();
-    function pg(cls, label, x) { var b = el("button", cls); b.type = "button"; b.append(el("span", null, label), el("b", null, x.name)); b.addEventListener("click", function () { openSheet(sec, x.id); }); return b; }
+    function pg(cls, label, x) { var b = el("button", cls); b.type = "button"; b.append(el("span", null, label), el("b", null, sec === "skills" ? x.title : x.name)); b.addEventListener("click", function () { openSheet(sec, x.id); }); return b; }
     if (i > 0) pager.append(pg("prev", "← Предыдущая", seq[i - 1]));
     if (i > -1 && i < seq.length - 1) pager.append(pg("next", "Следующая →", seq[i + 1]));
     var sh = $("#sheet");
@@ -947,7 +993,7 @@ footer{border-top:1px solid var(--line)}
   }
   function fromHash() {
     var h = (location.hash || "").slice(1);
-    if (!$("#sheet").hidden && !/^(templates|models|moves|light)\/./.test(h)) { $("#sheet").hidden = true; document.body.style.overflow = ""; current = null; }
+    if (!$("#sheet").hidden && !/^(templates|models|moves|light|skills)\/./.test(h)) { $("#sheet").hidden = true; document.body.style.overflow = ""; current = null; }
     if (!h) return;
     route(h, false);
   }
