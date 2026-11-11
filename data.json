@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-28",
+ "updated": "2026-11-12",
  "sections": [
   {
    "id": "templates",
@@ -18,6 +18,12 @@
    "title": "Движения камеры",
    "short": "Движения",
    "note": "Готовые фразы для блока CAMERA: части в [скобках] меняем под сцену. Угол обзора в градусах, скорость в км/ч."
+  },
+  {
+   "id": "light",
+   "title": "Свет",
+   "short": "Свет",
+   "note": "34 схемы освещения: как выглядит кадр, когда брать и готовая фраза для блока LIGHTING. Пишем и название схемы, и где стоит источник — так модель понимает надёжнее. Схема на карточке: слева — как свет ложится на объём, справа — вид сверху."
   },
   {
    "id": "rules",
@@ -46,6 +52,7 @@
   "Формат и кредиты",
   "Референсы и теги",
   "Листы",
+  "Лица и глаза",
   "Массовка и геометрия",
   "Стиль и динамика",
   "Звук",
@@ -59,7 +66,8 @@
   "Формат и кредиты": "Настройки Higgsfield, длительность и формат кадра, и как беречь кредиты.",
   "Референсы и теги": "Элементы и @теги, фото- и видео-референсы, предметы и их состояние от плана к плану.",
   "Листы": "Листы персонажей, локации и предметы: шаблон, эталон манеры, правка готовых картинок.",
-  "Массовка и геометрия": "Люди в кадре, их число, стороны и расстояния. Модель не угадывает пространство, его надо описать.",
+  "Лица и глаза": "Лица, глаза и губы: какие слова модель понимает буквально и откуда в видео берётся цвет глаз.",
+  "Массовка и геометрия": "Люди и предметы в кадре: сколько их, где стоят, куда движутся, что отражается. Модель не угадывает пространство, его надо описать.",
   "Стиль и динамика": "Движение камеры, ритм склеек и операторский язык под стиль.",
   "Звук": "Саунд-дизайн без музыки: что писать в AUDIO и чего не писать.",
   "Липсинк": "Реплики через аудио-референс: длина, язык, где начинается звук.",
@@ -67,6 +75,204 @@
   "Монтаж": "Что доделываем после генерации: звук реплик, музыка под голос, склейки на бит, финал.",
   "Фильтры": "Как не получить ложную блокировку и где проходят границы."
  },
+ "lcats": [
+  "Контраст и характер",
+  "Схемы для портрета",
+  "Направление",
+  "Природный свет",
+  "Источники в кадре",
+  "Цвет"
+ ],
+ "start": [
+  {
+   "title": "Придумайте сцену",
+   "text": "Расскажите ИИ-помощнику образы, настроение и пару ключевых кадров. Пусть он соберёт раскадровку и промты, а всё, что придумал сам, пометит.",
+   "links": [
+    {
+     "label": "Как работать",
+     "href": "#rules/Подход"
+    },
+    {
+     "label": "Запрос до промта",
+     "href": "#templates/t20"
+    }
+   ]
+  },
+  {
+   "title": "Соберите героев и места",
+   "text": "Сделайте листы персонажей, пустые кадры локаций и предметы. В Higgsfield они станут элементами с @тегами, и модель удержит одно лицо и одно место во всех планах.",
+   "links": [
+    {
+     "label": "Шаблоны листов",
+     "href": "#templates/Листы"
+    },
+    {
+     "label": "Правила листов",
+     "href": "#rules/Листы"
+    }
+   ]
+  },
+  {
+   "title": "Выберите стиль",
+   "text": "Возьмите готовую шапку стиля и вставляйте её дословно во все промты проекта. Новый стиль сначала проверьте коротким тестом.",
+   "links": [
+    {
+     "label": "Шапки стилей",
+     "href": "#templates/Шапки стилей"
+    }
+   ]
+  },
+  {
+   "title": "Напишите промт видео",
+   "text": "Основа — шаблон мультишота с таймкодами. Камеру берите из раздела «Движения», свет — из раздела «Свет»: там готовые фразы для блоков CAMERA и LIGHTING.",
+   "links": [
+    {
+     "label": "Шаблон видео",
+     "href": "#templates/t11"
+    },
+    {
+     "label": "Движения камеры",
+     "href": "#moves"
+    },
+    {
+     "label": "Свет",
+     "href": "#light"
+    }
+   ]
+  },
+  {
+   "title": "Проверьте и доведите",
+   "text": "Перед запуском пробегитесь по правилам. Не вышел дубль — шаблон «починить промт». Звук, реплики и субтитры доводим на монтаже.",
+   "links": [
+    {
+     "label": "Все правила",
+     "href": "#rules"
+    },
+    {
+     "label": "Починить промт",
+     "href": "#templates/t21"
+    },
+    {
+     "label": "Монтаж",
+     "href": "#rules/Монтаж"
+    }
+   ]
+  }
+ ],
+ "glossary": [
+  {
+   "term": "Higgsfield",
+   "def": "Сервис, где собраны нейросети для видео и картинок (Seedance, Nano Banana, Kling и другие) и где их запускают."
+  },
+  {
+   "term": "Seedance",
+   "def": "Видеомодель, на которой построен пульт. Версия 2.5 делает за одну генерацию ролик от 4 до 30 секунд."
+  },
+  {
+   "term": "Генерация, дубль",
+   "def": "Один запуск модели. Дубль — ещё один запуск того же промта: результат каждый раз немного другой."
+  },
+  {
+   "term": "Промт",
+   "def": "Текстовое задание для модели. Пишем по-английски, по блокам: сцена, референсы, камера, действие, свет, звук, стиль, фиксаторы."
+  },
+  {
+   "term": "[Скобки]",
+   "def": "Места в шаблоне или фразе, которые меняют под свою сцену. Всё остальное можно брать дословно."
+  },
+  {
+   "term": "Элемент и @тег",
+   "def": "Картинка, загруженная в Higgsfield как элемент: лист героя, локация, предмет. В промте на неё ссылаются через @имя, выбранное из списка @; тег, набранный простым текстом, ничего не прикрепляет."
+  },
+  {
+   "term": "Референс",
+   "def": "Приложенная картинка, видео или аудио. Картинка задаёт внешность или композицию, короткое видео — движение камеры, аудио — голос для липсинка."
+  },
+  {
+   "term": "Лист персонажа",
+   "def": "Картинка с героем в нескольких видах: спереди, сбоку, со спины, портрет. По нему модель держит одно лицо и один костюм во всех планах."
+  },
+  {
+   "term": "Плейт",
+   "def": "Пустой кадр места без людей. Задаёт пространство, свет и цвет; людей дописываем текстом."
+  },
+  {
+   "term": "Шапка стиля",
+   "def": "Готовый абзац про стиль (блоки STYLE и COLOR GRADE). Вставляется дословно во все промты проекта, чтобы всё было в одной манере."
+  },
+  {
+   "term": "План, шот",
+   "def": "Кусок видео от склейки до склейки."
+  },
+  {
+   "term": "Склейка",
+   "def": "Мгновенная смена плана (HARD CUT). В промте её ставят на таймкод: «2.0s HARD CUT»."
+  },
+  {
+   "term": "Мультишот",
+   "def": "Одна генерация из нескольких планов со склейками внутри."
+  },
+  {
+   "term": "Крупность",
+   "def": "Насколько близко камера к герою: общий, средний, крупный, сверхкрупный план."
+  },
+  {
+   "term": "Угол обзора (FOV)",
+   "def": "Пишем в градусах. Чем меньше число, тем уже обзор и сильнее приближение: 18° — как длинный объектив, 47° — обычный взгляд, 63° и больше — широкий."
+  },
+  {
+   "term": "Скорость камеры",
+   "def": "Пишем в км/ч, чтобы модель понимала темп: 1–3 км/ч — плавный наезд, 5 — шаг, 9 и больше — бег."
+  },
+  {
+   "term": "LOCKS, фиксаторы",
+   "def": "Короткие строки в конце промта, которые закрепляют важное: одно лицо во всех планах, нет музыки, герой идёт слева направо."
+  },
+  {
+   "term": "AUDIO",
+   "def": "Блок звука в промте. Пишем только звуки сцены (шаги, ветер, скрип) без музыки: музыку кладём на монтаже."
+  },
+  {
+   "term": "Саунд-дизайн",
+   "def": "Шумы и звуки сцены, без музыки и голоса."
+  },
+  {
+   "term": "Липсинк",
+   "def": "Губы героя двигаются точно под реплику. Запись реплики даём модели аудио-референсом."
+  },
+  {
+   "term": "Закадр",
+   "def": "Голос рассказчика поверх видео."
+  },
+  {
+   "term": "Стартовый кадр",
+   "def": "Картинка, с которой модель начинает видео (first frame)."
+  },
+  {
+   "term": "Repaint",
+   "def": "Перерисовка готовой картинки в другой манере без новой генерации."
+  },
+  {
+   "term": "Грейд",
+   "def": "Общее цветовое решение кадра, блок COLOR GRADE."
+  },
+  {
+   "term": "Ключевой, заполняющий, контровой",
+   "def": "Ключевой (key) — главный источник света. Заполняющий (fill) — слабее, смягчает тени. Контровой (rim) — сзади, обводит контур и отделяет героя от фона."
+  },
+  {
+   "term": "Жёсткий и мягкий свет",
+   "def": "Жёсткий — от маленького яркого источника, тени с резким краем. Мягкий — от большого рассеянного, тени с плавным переходом."
+  },
+  {
+   "term": "Правило 180°",
+   "def": "Камера всё время с одной стороны от героя, поэтому по экрану он движется в одну сторону."
+  },
+  {
+   "term": "Статусы карточек",
+   "def": "«Проверено» — сработало в реальной генерации. «Из гайда», «Курс», «Гайд», «Каталог» и «Идея» — пересказ материалов Higgsfield, на практике ещё не проверено. «Заготовка» — шаблон, который пока не тестировали."
+  }
+ ],
  "templates": [
   {
    "id": "t01",
@@ -446,6 +652,44 @@
    "notes": "",
    "body": "Вот промт, который я тестирую: [промт]. Что пошло не так (с секундами): [ошибки]. Что хочу вместо этого: [результат].\nСохрани всё, что уже работает. Поправь все связанные строки, чтобы инструкции не спорили между собой. Если инструкция уже ясная и модель просто промахнулась, так и скажи. Верни полный промт и отдельно список изменений с причинами.",
    "source": "Higgsfield Academy, уроки 5 и 6"
+  },
+  {
+   "id": "t22",
+   "cat": "Шапки стилей",
+   "status": "Проверено",
+   "name": "Шапка: душный жёлтый реализм (видео)",
+   "models": "Seedance 2.5",
+   "purpose": "Блоки COLOR GRADE и STYLE для фотореальной исторической драмы в грязном горчично-янтарном монохроме с крупным зерном: душно, потно, тесно. Проверено в видео.",
+   "howto": "Вставлять дословно в блоки COLOR GRADE и STYLE, ближе к концу промта. Город и год в STYLE меняем под свою историю. В LIGHTING — один жёсткий источник (например, низкое солнце из окна), остальное в темноте.",
+   "notes": "Цвет держит фраза «Nothing in the frame is any colour other than…». Если камера в сцене должна быть плавной, убираем из STYLE ручную камеру и тряску. Глаза в грейде не красим: см. правила «Лица и глаза».",
+   "body": "COLOR GRADE\nA jaundiced monochrome: the whole frame lives in dirty mustard, amber and ochre; highlights burn to dirty lemon, skin is waxy amber-yellow and glistens with sweat, shadows are crushed to deep black with a faint olive-brown cast; most of the frame is darkness. Nothing in the frame is any colour other than yellow, ochre, olive or black.\n\nSTYLE\nPhotoreal live-action period drama, [city] in [year], captured on coarse 35mm film and printed with a bleach-bypass process: hard contrast, blown highlights, crushed blacks, heavy visible grain crawling in the shadows, faint halation around the brightest light. Real camera behaviour: handheld with a living, breathing shake and a half-beat lag, natural motion blur on fast moves, shallow depth of field on close-ups. Everything is grimy, sweaty, cramped and close; the image feels dirty and tired.",
+   "source": "",
+   "img": [
+    {
+     "src": "img/tpl-yellow-1.webp",
+     "cap": "Кадр из видео с этой шапкой"
+    },
+    {
+     "src": "img/tpl-yellow-2.webp",
+     "cap": "Кадр из видео с этой шапкой"
+    },
+    {
+     "src": "img/tpl-yellow-3.webp",
+     "cap": "Кадр из видео с этой шапкой"
+    }
+   ]
+  },
+  {
+   "id": "t23",
+   "cat": "Видео",
+   "status": "Заготовка",
+   "name": "Блок LIGHTING по формуле",
+   "models": "Seedance 2.5, модели картинок",
+   "purpose": "Блок света для видео или картинки: название схемы плюс описание источника. Модель понимает надёжнее, когда есть и то и другое.",
+   "howto": "Название и фразу схемы берите из раздела «Свет». Пишите, что за источник, откуда он светит, жёсткий он или мягкий, какого цвета и что происходит в тенях. Ненужные строки удаляйте. В промте из нескольких планов последняя строка держит свет одинаковым от плана к плану.",
+   "notes": "Глаза в описании света не упоминаем (правила «Лица и глаза»). Если свет должен меняться внутри генерации, пишем это по таймкодам.",
+   "body": "LIGHTING\n[Lighting scheme, e.g. low-key lighting]: the key light is [the source: a low sun through the window] from [where: frame left, 45° to the side, above eye level]; it is [hard, with crisp sharp-edged shadows / soft, with gentle shadows] and [warm amber / cool blue].\nFill: [none, the shadow side falls to deep black / a soft bounce from the pale wall keeps the shadows readable].\nAccent: [a thin cool rim light from behind on the hair and shoulders].\nPracticals in frame: [a candle on the table is the only warm light in the frame].\nAtmosphere: [faint haze in the air, the beam of light is visible].\nThe light direction and colour stay the same in every shot; [the key light always comes from frame left].",
+   "source": ""
   }
  ],
  "models": [
@@ -1455,6 +1699,986 @@
      "cap": "Кран вверх: высокий общий план"
     }
    ]
+  },
+  {
+   "id": "m28",
+   "type": "compound",
+   "status": "Проверено",
+   "name": "Уход в трещину",
+   "sees": "Камера отрывается от лица засыпающего героя, поднимается к потолку и въезжает в трещину, пока её чернота не заполнит весь кадр. Переход из яви в сон.",
+   "phrase": "from [his closing eyes] the camera tilts up and rises off [the sofa] toward [the low ceiling], then pushes at 3 km/h straight into [the long crack in the plaster]; the crack grows until its dark split fills the whole frame and swallows it into black by [12.0s]",
+   "fov": "29° → 18°",
+   "speed": "3 км/ч",
+   "style": "кино",
+   "notes": "Глаза героя закрываем до начала движения, чтобы уход читался как засыпание. Следующий клип начинаем из черноты: так склейка получается чистой.",
+   "source": "",
+   "img": [
+    {
+     "src": "img/mv-crack-a.webp",
+     "cap": "Камера ушла от лица к потолку"
+    },
+    {
+     "src": "img/mv-crack-b.webp",
+     "cap": "Въезд в трещину"
+    },
+    {
+     "src": "img/mv-crack-c.webp",
+     "cap": "Чернота трещины заполняет кадр"
+    },
+    {
+     "src": "img/mv-crack-d.webp",
+     "cap": "Следующий клип начинается из черноты"
+    }
+   ]
+  }
+ ],
+ "light": [
+  {
+   "id": "l01",
+   "cat": "Контраст и характер",
+   "name": "Высокий ключ",
+   "en": "High key",
+   "sees": "Светлый кадр почти без теней: светлый фон, мягкий ровный свет, низкий контраст. Лёгкость и чистота.",
+   "when": "Реклама, бьюти, комедия, утренние сцены, предмет на белом.",
+   "phrase": "high-key lighting: bright, soft, even light from [large soft sources in front of and above the subject]; a bright [white] background, very gentle shadows, low contrast, nothing falls into black",
+   "notes": "Если лицо пересвечено, добавьте «the skin keeps its texture, highlights are not blown». В живописи — «a light, airy palette, a pale background».",
+   "d": {
+    "lights": [
+     {
+      "az": 0,
+      "el": 25,
+      "c": "#F2EEE6",
+      "i": 1,
+      "h": 0.1
+     }
+    ],
+    "amb": 0.75,
+    "bg": "#E3E0D8"
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l02",
+   "cat": "Контраст и характер",
+   "name": "Низкий ключ",
+   "en": "Low key",
+   "sees": "Тёмный кадр, большая часть в тени, свет выхватывает только главное. Высокий контраст, тайна, напряжение.",
+   "when": "Нуар, триллер, драма, ночные интерьеры, дорогая реклама.",
+   "phrase": "low-key lighting: a single [hard] key light from [frame left, 60° to the side, slightly above eye level] lights only [her face and hands]; no fill, the shadow side falls to deep black, most of the frame is darkness against a dark background",
+   "notes": "Модель любит досветить кадр: повторите в LOCKS «most of the frame stays in darkness».",
+   "d": {
+    "lights": [
+     {
+      "az": -70,
+      "el": 20,
+      "c": "#F2E6D0",
+      "i": 1,
+      "h": 0.7
+     }
+    ],
+    "amb": 0.04,
+    "bg": "#0A0A09"
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l09",
+   "cat": "Контраст и характер",
+   "name": "Кьяроскуро",
+   "en": "Chiaroscuro",
+   "sees": "Резкий переход от яркого света к глубокой тьме, как в живописи барокко: фигура выступает из чёрного фона.",
+   "when": "Историческая драма, живопись, мистические сцены.",
+   "phrase": "chiaroscuro: a single strong light from [high on frame left] carves [the figures] out of a pitch-black background; sharp contrast between brilliant light and deep shadow, light modelled like in a Baroque painting",
+   "notes": "В фотореализме уберите «like in a Baroque painting» и оставьте контраст. С живописной шапкой стиля работает особенно хорошо.",
+   "d": {
+    "lights": [
+     {
+      "az": -60,
+      "el": 45,
+      "c": "#FFD9A0",
+      "i": 1,
+      "h": 0.7
+     }
+    ],
+    "amb": 0.0,
+    "bg": "#050505"
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l10",
+   "cat": "Контраст и характер",
+   "name": "Силуэт",
+   "en": "Silhouette",
+   "sees": "Яркий фон, герой — тёмный силуэт без деталей. Читается только форма.",
+   "when": "Загадочное появление, финал, герой на фоне неба или окна.",
+   "phrase": "silhouette: [the man] stands against [the bright sunset sky]; he is lit only from behind, a solid dark silhouette with no detail on the face or clothes, the background is bright and evenly exposed",
+   "notes": "В силуэте читается только контур, поэтому позу делайте выразительной.",
+   "d": {
+    "lights": [
+     {
+      "az": 180,
+      "el": 10,
+      "c": "#FFFFFF",
+      "i": 0.5,
+      "h": 0.5
+     }
+    ],
+    "amb": 0.0,
+    "bg": "#EFE4CF",
+    "fx": [
+     "sil"
+    ]
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l12",
+   "cat": "Контраст и характер",
+   "name": "Жёсткий свет",
+   "en": "Hard light",
+   "sees": "Маленький яркий источник: тени чёткие, с резким краем, высокий контраст, видна фактура.",
+   "when": "Полдень, пустыня, нуар, напряжение, фактура материалов.",
+   "phrase": "hard light: a small, bright [direct sun] from [high on frame right]; crisp shadows with sharp edges, strong contrast, [her figure] casts a hard-edged shadow on [the wall]",
+   "notes": "Модель смягчает свет по умолчанию: слова «crisp, sharp-edged shadows» держат жёсткость.",
+   "d": {
+    "lights": [
+     {
+      "az": 60,
+      "el": 45,
+      "c": "#FFF3DD",
+      "i": 1,
+      "h": 1
+     }
+    ],
+    "amb": 0.1,
+    "bg": "#3A3833",
+    "fx": [
+     "cast"
+    ]
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l13",
+   "cat": "Контраст и характер",
+   "name": "Мягкий свет",
+   "en": "Soft light",
+   "sees": "Большой рассеянный источник: тени мягкие, с плавным переходом, кожа ровная.",
+   "when": "Портреты, бьюти, романтика, пасмурный день, спокойные сцены.",
+   "phrase": "soft light: a large diffused source [a big window with sheer curtains] on [frame left]; shadows are soft with a gentle gradual edge, smooth flattering skin, low-to-medium contrast",
+   "notes": "",
+   "d": {
+    "lights": [
+     {
+      "az": -45,
+      "el": 25,
+      "c": "#F4EFE6",
+      "i": 1,
+      "h": 0
+     }
+    ],
+    "amb": 0.3,
+    "bg": "#3A3833"
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l27",
+   "cat": "Контраст и характер",
+   "name": "Плоский свет",
+   "en": "Flat light",
+   "sees": "Свет со всех сторон: почти нет теней и объёма, кадр ровный и графичный.",
+   "when": "Каталог, документальная съёмка, комедия, графичные минималистичные кадры.",
+   "phrase": "flat light: even, shadowless light from all sides [from an overcast sky]; almost no modelling on the faces, low contrast, a clean graphic look",
+   "notes": "",
+   "d": {
+    "lights": [
+     {
+      "az": 0,
+      "el": 0,
+      "c": "#EDEBE5",
+      "i": 0.9,
+      "h": 0
+     }
+    ],
+    "amb": 0.8,
+    "bg": "#9A9790"
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l03",
+   "cat": "Схемы для портрета",
+   "name": "Рембрандт",
+   "en": "Rembrandt",
+   "sees": "Свет сбоку и сверху под углом около 45°: одна сторона лица освещена, на теневой щеке остаётся светлый треугольник. Классический драматичный портрет.",
+   "when": "Драматичные портреты, исторические сцены, серьёзные разговоры, живопись.",
+   "phrase": "Rembrandt lighting: the key light is 45° to [his] [left] and above eye level; the far cheek is in shadow except for a small bright triangle of light on it; soft fill, deep but readable shadows",
+   "notes": "Для живописи добавьте «like an old master portrait».",
+   "d": {
+    "lights": [
+     {
+      "az": -45,
+      "el": 40,
+      "c": "#FFE2B8",
+      "i": 1,
+      "h": 0.5
+     }
+    ],
+    "amb": 0.14,
+    "bg": "#1E1C19"
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l04",
+   "cat": "Схемы для портрета",
+   "name": "Бабочка",
+   "en": "Butterfly",
+   "sees": "Свет спереди и высоко над камерой: под носом маленькая тень-бабочка, подчёркнутые скулы, ровное красивое лицо.",
+   "when": "Бьюти, гламур, портреты в духе старого Голливуда.",
+   "phrase": "butterfly lighting: the key light is directly in front of [her], high above the camera, pointing down; a small butterfly-shaped shadow under the nose, sculpted cheekbones, a soft shadow under the chin",
+   "notes": "Если тени снизу слишком тёмные, добавьте «a white bounce card under the chin softens the shadows».",
+   "d": {
+    "lights": [
+     {
+      "az": 0,
+      "el": 55,
+      "c": "#FFF0DC",
+      "i": 1,
+      "h": 0.45
+     }
+    ],
+    "amb": 0.2,
+    "bg": "#24221F"
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l05",
+   "cat": "Схемы для портрета",
+   "name": "Разделённый свет",
+   "en": "Split light",
+   "sees": "Свет строго сбоку: лицо делится пополам на светлую и тёмную половины.",
+   "when": "Двойственный герой, конфликт, тайна, жёсткий портрет.",
+   "phrase": "split lighting: a hard key light at exactly 90° to [his] [right], at eye level; one half of the face is lit, the other half falls into shadow, a clean dividing line down the middle of the face",
+   "notes": "Если тёмная половина уходит в чистый чёрный, добавьте «a faint fill keeps the dark side barely readable».",
+   "d": {
+    "lights": [
+     {
+      "az": 90,
+      "el": 5,
+      "c": "#F2EEE6",
+      "i": 1,
+      "h": 0.85
+     }
+    ],
+    "amb": 0.04,
+    "bg": "#141413"
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l06",
+   "cat": "Схемы для портрета",
+   "name": "Петля",
+   "en": "Loop light",
+   "sees": "Свет чуть сбоку и выше лица: тень от носа ложится небольшой петлёй к уголку рта. Мягкий естественный портрет.",
+   "when": "Интервью, разговорные сцены, естественные портреты. Надёжный вариант по умолчанию.",
+   "phrase": "loop lighting: the key light is 30° to [her] [right] and a little above eye level; the nose casts a small loop-shaped shadow toward the corner of the mouth; soft fill from the other side",
+   "notes": "",
+   "d": {
+    "lights": [
+     {
+      "az": 30,
+      "el": 30,
+      "c": "#FFE8CC",
+      "i": 1,
+      "h": 0.35
+     }
+    ],
+    "amb": 0.3,
+    "bg": "#2A2825"
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l07",
+   "cat": "Схемы для портрета",
+   "name": "Широкий свет",
+   "en": "Broad light",
+   "sees": "Голова повёрнута от источника, и освещена та сторона лица, что ближе к камере. Лицо кажется шире и открытее.",
+   "when": "Открытые, дружелюбные герои; узкие лица.",
+   "phrase": "broad lighting: [her] head is turned slightly away from the key light, so the side of the face nearer to the camera is lit and the far side falls into shadow",
+   "notes": "Пишите и поворот головы, и сторону света: одного названия схемы модели мало.",
+   "d": {
+    "lights": [
+     {
+      "az": 45,
+      "el": 25,
+      "c": "#FFE8CC",
+      "i": 1,
+      "h": 0.4
+     }
+    ],
+    "amb": 0.2,
+    "bg": "#2A2825",
+    "face": -35
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l08",
+   "cat": "Схемы для портрета",
+   "name": "Короткий свет",
+   "en": "Short light",
+   "sees": "Голова повёрнута к источнику: освещена дальняя от камеры сторона лица, ближняя в тени. Лицо стройнее, кадр драматичнее.",
+   "when": "Драма, напряжённые сцены, скульптурное лицо.",
+   "phrase": "short lighting: [his] head is turned toward the key light, so the far side of the face is lit and the side nearer to the camera falls into shadow; sculpted and moody",
+   "notes": "Пишите и поворот головы, и сторону света: одного названия схемы модели мало.",
+   "d": {
+    "lights": [
+     {
+      "az": -50,
+      "el": 25,
+      "c": "#FFE8CC",
+      "i": 1,
+      "h": 0.5
+     }
+    ],
+    "amb": 0.1,
+    "bg": "#1A1917",
+    "face": -35
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l11",
+   "cat": "Направление",
+   "name": "Контровой свет",
+   "en": "Rim light",
+   "sees": "Свет сзади-сбоку обводит голову и плечи тонкой светящейся линией и отделяет героя от тёмного фона.",
+   "when": "Отделить героя от фона, ночные сцены, героические кадры, дым и туман.",
+   "phrase": "a [cool] rim light from behind [her], [high on frame right], traces a thin bright outline along [her hair, cheek and shoulders] and separates her from the dark background; the front of the face stays soft and dim",
+   "notes": "Сочетается с любым ключевым светом. В дыму и тумане даёт эффектные лучи.",
+   "d": {
+    "lights": [
+     {
+      "az": 150,
+      "el": 30,
+      "c": "#BFD8FF",
+      "i": 1,
+      "h": 0.6
+     },
+     {
+      "az": -30,
+      "el": 15,
+      "c": "#8C8A86",
+      "i": 0.35,
+      "h": 0
+     }
+    ],
+    "amb": 0.06,
+    "bg": "#0E0F12"
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l14",
+   "cat": "Направление",
+   "name": "Отражённый свет",
+   "en": "Bounce light",
+   "sees": "Свет приходит не от источника, а отражённым от стены, пола или отражателя: мягкий, цвета этой поверхности.",
+   "when": "Мягко открыть тени, интерьеры, солнечный день на улице.",
+   "phrase": "bounce light: [sunlight] hits [the pale floor] and bounces back softly onto [her face] from [below and to the right]; a gentle, low-contrast fill that takes the colour of [the warm wooden floor]",
+   "notes": "Удобный способ высветлить тени без нового источника в кадре.",
+   "d": {
+    "lights": [
+     {
+      "az": 20,
+      "el": -35,
+      "c": "#FFE4C4",
+      "i": 0.85,
+      "h": 0
+     }
+    ],
+    "amb": 0.28,
+    "bg": "#2E2C28",
+    "fx": [
+     "reflector"
+    ]
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l15",
+   "cat": "Направление",
+   "name": "Верхний свет",
+   "en": "Top light",
+   "sees": "Свет прямо сверху: макушка и плечи освещены, верх лица уходит в тень от бровей, под носом и подбородком резкие тени. Тревожно и замкнуто.",
+   "when": "Допрос, подвал, офис, тюремная камера, мрачный героизм.",
+   "phrase": "top light: a single [bare bulb] hangs directly above [him]; the top of his head and his shoulders are lit, the brow throws the upper face into shadow, hard shadows under the nose and chin, the room around him is dark",
+   "notes": "Если лицо должно читаться, добавьте «a faint bounce from the table lifts the shadows on the face».",
+   "d": {
+    "lights": [
+     {
+      "az": 0,
+      "el": 82,
+      "c": "#F2EEE6",
+      "i": 1,
+      "h": 0.75
+     }
+    ],
+    "amb": 0.04,
+    "bg": "#0D0D0C",
+    "fx": [
+     "bulb"
+    ]
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l16",
+   "cat": "Направление",
+   "name": "Нижний свет",
+   "en": "Underlight",
+   "sees": "Свет снизу: тени ложатся вверх, лицо выглядит чужим и пугающим. Классика хоррора и страшилок у костра.",
+   "when": "Хоррор, злодей, рассказ с фонариком, мистика.",
+   "phrase": "underlighting: the only light comes from [a flashlight held at her chest] below [her face], pointing up; shadows fall upward across the face, the background is dark",
+   "notes": "",
+   "d": {
+    "lights": [
+     {
+      "az": 0,
+      "el": -70,
+      "c": "#FFD08A",
+      "i": 1,
+      "h": 0.6
+     }
+    ],
+    "amb": 0.04,
+    "bg": "#0A0908"
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l17",
+   "cat": "Природный свет",
+   "name": "Золотой час",
+   "en": "Golden hour",
+   "sees": "Низкое тёплое солнце незадолго до заката: длинные тени, золотые блики, тёплый контровой свет в волосах.",
+   "when": "Романтика, ностальгия, финалы, тёплая реклама.",
+   "phrase": "golden hour: a low warm sun just above the horizon [behind her on frame left]; long soft shadows across [the field], golden backlight glowing in [her hair], a warm amber sky",
+   "notes": "Пишите, где солнце относительно героя: за спиной, сбоку или в лицо. В живописи — «warm golden light modelled like a plein-air painting».",
+   "d": {
+    "lights": [
+     {
+      "az": -130,
+      "el": 8,
+      "c": "#FFB14A",
+      "i": 1,
+      "h": 0.4
+     },
+     {
+      "az": 30,
+      "el": 10,
+      "c": "#FFD7A0",
+      "i": 0.4,
+      "h": 0
+     }
+    ],
+    "amb": 0.18,
+    "bg": "#E8A456",
+    "bg2": "#7A4A22",
+    "fx": [
+     "sun"
+    ]
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l18",
+   "cat": "Природный свет",
+   "name": "Синий час",
+   "en": "Blue hour",
+   "sees": "Сумерки сразу после заката: небо глубоко-синее, мягкий холодный свет без резких теней, тёплые окна и фонари на этом фоне.",
+   "when": "Вечерний город, меланхолия, тихие проходы, контраст тёплого и холодного.",
+   "phrase": "blue hour: just after sunset the sky is a deep saturated blue and lights the scene softly with no hard shadows; warm [street lamps and windows] glow against the cool blue",
+   "notes": "",
+   "d": {
+    "lights": [
+     {
+      "az": -30,
+      "el": 40,
+      "c": "#6E8BE0",
+      "i": 0.85,
+      "h": 0
+     },
+     {
+      "az": 75,
+      "el": 10,
+      "c": "#FFB860",
+      "i": 0.55,
+      "h": 0.3
+     }
+    ],
+    "amb": 0.15,
+    "bg": "#3A57A8",
+    "bg2": "#141D3A"
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l19",
+   "cat": "Природный свет",
+   "name": "Ночь из дня",
+   "en": "Day for night",
+   "sees": "Ночь, снятая днём: кадр тёмный и синий, но тени чёткие, как от солнца. Киношная лунная ночь, где всё видно.",
+   "when": "Ночные пейзажи и пустыни, вестерн, сказочная ночь.",
+   "phrase": "day for night: a night scene with a cinematic day-for-night look; the whole frame is underexposed and tinted deep blue, the sky is dark navy, crisp moon-like shadows, [the landscape] stays readable",
+   "notes": "Если выходит обычный день, усильте: «it clearly reads as night, the sky is dark navy».",
+   "d": {
+    "lights": [
+     {
+      "az": 60,
+      "el": 35,
+      "c": "#8FA9D8",
+      "i": 0.85,
+      "h": 0.85
+     }
+    ],
+    "amb": 0.1,
+    "bg": "#22355E",
+    "bg2": "#0E1628"
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l20",
+   "cat": "Природный свет",
+   "name": "Лунный свет",
+   "en": "Moonlight",
+   "sees": "Холодный серебристо-голубой свет сверху-сбоку, мягкие длинные тени, тёмный кадр, блики на мокрых поверхностях.",
+   "when": "Ночные улицы, романтика, мистика, сны.",
+   "phrase": "moonlight: a cool silvery-blue light from [the moon high on frame right] falls on [the street]; soft long shadows, dark surroundings, a faint sheen on [the wet cobblestones]",
+   "notes": "Саму луну в кадре описывайте отдельно, этим блоком — только её свет.",
+   "d": {
+    "lights": [
+     {
+      "az": 70,
+      "el": 50,
+      "c": "#A9C7FF",
+      "i": 0.9,
+      "h": 0.45
+     }
+    ],
+    "amb": 0.05,
+    "bg": "#0B1222",
+    "fx": [
+     "moon"
+    ]
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l21",
+   "cat": "Природный свет",
+   "name": "Свет из окна",
+   "en": "Window light",
+   "sees": "Свет из окна сбоку, мягкий или солнечный: лицо или предмет светлые со стороны окна, комната быстро уходит в тень.",
+   "when": "Интерьеры, утро, тихие бытовые сцены, портреты в духе голландской живописи.",
+   "phrase": "window light: [low hard sun] comes through [a small window on frame left] and is the only light; it lights [the floor and the table] from the side, the light falls off quickly into the dim room, [the window frame] casts its shadow on [the floor]",
+   "notes": "Проверено в видео: низкое солнце из окна как единственный источник держит драму в фотореализме (см. шапку T22).",
+   "d": {
+    "lights": [
+     {
+      "az": -80,
+      "el": 20,
+      "c": "#FFF0D8",
+      "i": 1,
+      "h": 0.3
+     }
+    ],
+    "amb": 0.08,
+    "bg": "#1F1D1A",
+    "fx": [
+     "window"
+    ]
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/",
+   "img": [
+    {
+     "src": "img/tpl-yellow-1.webp",
+     "cap": "Низкое солнце из окна — единственный источник"
+    }
+   ]
+  },
+  {
+   "id": "l25",
+   "cat": "Природный свет",
+   "name": "Свет сквозь листву",
+   "en": "Dappled light",
+   "sees": "Солнце пробивается сквозь листья: на лице и земле пятна света, которые слегка двигаются.",
+   "when": "Лето, сад, лес, ностальгия, романтика.",
+   "phrase": "dappled light: sunlight filters through [the leaves overhead] and scatters spots of light across [her face, shoulders and the ground]; the patches drift gently as the leaves move in the breeze",
+   "notes": "",
+   "d": {
+    "lights": [
+     {
+      "az": 30,
+      "el": 60,
+      "c": "#FFF0C8",
+      "i": 0.55,
+      "h": 0.3
+     }
+    ],
+    "amb": 0.22,
+    "bg": "#26311F",
+    "fx": [
+     "dapple"
+    ]
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l26",
+   "cat": "Природный свет",
+   "name": "Объёмный свет",
+   "en": "Volumetric light",
+   "sees": "Видимые лучи в дыму, тумане или пыли: свет становится формой в кадре.",
+   "when": "Храмы, туманный лес, склады, концерты, эпичное появление.",
+   "phrase": "volumetric light: shafts of [sunlight] pour through [the high windows] into [the dusty air]; the beams are clearly visible in the haze, [floating dust] glitters inside them",
+   "notes": "Без дымки лучей не видно: всегда пишите, что висит в воздухе — haze, dust, smoke, mist.",
+   "d": {
+    "lights": [
+     {
+      "az": -60,
+      "el": 55,
+      "c": "#FFE7B8",
+      "i": 0.8,
+      "h": 0.5
+     }
+    ],
+    "amb": 0.1,
+    "bg": "#1C1A16",
+    "fx": [
+     "beam"
+    ]
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l22",
+   "cat": "Источники в кадре",
+   "name": "Практический свет",
+   "en": "Practical light",
+   "sees": "Источник виден в кадре — настольная лампа, торшер, бра, гирлянда — и он же освещает сцену. Уютно и правдоподобно.",
+   "when": "Ночные интерьеры, кафе, бары, уют, реализм.",
+   "phrase": "practical light: [a table lamp with a warm fabric shade] stands in the frame and is the visible source; it lights [his face] warmly from [frame left], the glow falls off into the dark corners of the room",
+   "notes": "Напишите, что источник в кадре и свет идёт именно от него, иначе модель может добавить невидимый софтбокс.",
+   "d": {
+    "lights": [
+     {
+      "az": -60,
+      "el": 5,
+      "c": "#FFB565",
+      "i": 1,
+      "h": 0.35
+     }
+    ],
+    "amb": 0.07,
+    "bg": "#14110D",
+    "fx": [
+     "lamp"
+    ]
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l23",
+   "cat": "Источники в кадре",
+   "name": "Свет огня",
+   "en": "Firelight",
+   "sees": "Тёплый оранжевый живой свет от костра, камина или свечей: мерцает, тени дрожат, вокруг темно.",
+   "when": "Исторические сцены, вечер у костра, свечные интерьеры, уют или угроза.",
+   "phrase": "firelight: the only light is [the campfire] at [frame left, below eye level]; warm orange light flickers across [their faces], the shadows tremble, everything beyond the circle of light is dark",
+   "notes": "Слово «flickers» даёт в видео живое мерцание. Хорошо работает и в живописи.",
+   "d": {
+    "lights": [
+     {
+      "az": -50,
+      "el": -20,
+      "c": "#FF8A33",
+      "i": 1,
+      "h": 0.45
+     }
+    ],
+    "amb": 0.03,
+    "bg": "#0D0806",
+    "fx": [
+     "fire"
+    ]
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l24",
+   "cat": "Источники в кадре",
+   "name": "Жалюзи",
+   "en": "Venetian blinds",
+   "sees": "Свет проходит через жалюзи и ложится на лицо и стену полосами. Нуар, детектив, тайна.",
+   "when": "Нуар, детектив, ночной офис, допрос.",
+   "phrase": "venetian blind light: hard light through [half-open venetian blinds on frame right] throws diagonal stripes of light and shadow across [his face, the desk and the wall]; the rest of the room is dark",
+   "notes": "",
+   "d": {
+    "lights": [
+     {
+      "az": 70,
+      "el": 30,
+      "c": "#F2E3C4",
+      "i": 0.9,
+      "h": 0.9
+     }
+    ],
+    "amb": 0.05,
+    "bg": "#1A1814",
+    "fx": [
+     "blinds"
+    ]
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l28",
+   "cat": "Источники в кадре",
+   "name": "Неон",
+   "en": "Neon light",
+   "sees": "Цветные неоновые вывески красят лица и мокрые поверхности в розовый, синий, бирюзовый. Ночной город, киберпанк.",
+   "when": "Ночной город, клубы, киберпанк, музыкальные клипы.",
+   "phrase": "neon light: [a pink neon sign on frame left and a cyan one on frame right] light [his face] in two colours; saturated reflections on [the wet street], deep dark shadows between the signs",
+   "notes": "",
+   "d": {
+    "lights": [
+     {
+      "az": -70,
+      "el": 10,
+      "c": "#FF3DAA",
+      "i": 1,
+      "h": 0.5
+     },
+     {
+      "az": 70,
+      "el": 10,
+      "c": "#2EE6FF",
+      "i": 1,
+      "h": 0.5
+     }
+    ],
+    "amb": 0.03,
+    "bg": "#0B0716",
+    "fx": [
+     "neon"
+    ]
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l31",
+   "cat": "Источники в кадре",
+   "name": "Свет экрана",
+   "en": "Screen glow",
+   "sees": "Лицо освещено спереди и чуть снизу холодным светом монитора или телефона, всё вокруг тёмное, свет меняется вместе с картинкой.",
+   "when": "Ночь у компьютера, переписка, одиночество, хоррор.",
+   "phrase": "screen glow: the only light is the cool blue-white glow of [the laptop screen] in front of [her], slightly below her face; the light shifts as the image on the screen changes, the room around her is dark",
+   "notes": "",
+   "d": {
+    "lights": [
+     {
+      "az": 0,
+      "el": -20,
+      "c": "#8FBFFF",
+      "i": 1,
+      "h": 0.15
+     }
+    ],
+    "amb": 0.03,
+    "bg": "#06080D",
+    "fx": [
+     "screen"
+    ]
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l32",
+   "cat": "Источники в кадре",
+   "name": "Проходящий свет",
+   "en": "Passing light",
+   "sees": "Свет проезжает по герою и уходит: фары, фонари за окном машины или поезда. Ритм, движение, ночная дорога.",
+   "when": "Ночная езда, поезд, тоннели, напряжение, ощущение времени.",
+   "phrase": "passing light: [the street lamps outside the car window] sweep across [his face] from [right to left] every [2 seconds], then darkness returns; a slow rhythmic pulse of light",
+   "notes": "В видео задайте ритм в секундах, иначе свет мигает хаотично. На картинке это читается как полоса света.",
+   "d": {
+    "lights": [
+     {
+      "az": 70,
+      "el": 15,
+      "c": "#FFE7C2",
+      "i": 0.9,
+      "h": 0.5
+     }
+    ],
+    "amb": 0.05,
+    "bg": "#0B0B0D",
+    "fx": [
+     "pass"
+    ]
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l33",
+   "cat": "Источники в кадре",
+   "name": "Стробоскоп",
+   "en": "Strobe light",
+   "sees": "Резкие вспышки в темноте: движение рвётся на отдельные застывшие кадры. Клуб, паника, драка.",
+   "when": "Клубы, концерты, хоррор, драка, клипы.",
+   "phrase": "strobe light: harsh white strobe flashes in [the dark club], [a flash every half second]; between flashes the frame is almost black, each flash freezes [the dancers] in a sharp pose",
+   "notes": "Задайте частоту вспышек. Частые вспышки опасны для людей со светочувствительной эпилепсией: в публикации ставьте предупреждение.",
+   "d": {
+    "lights": [
+     {
+      "az": 0,
+      "el": 10,
+      "c": "#FFFFFF",
+      "i": 1,
+      "h": 0.9
+     }
+    ],
+    "amb": 0.0,
+    "bg": "#050505",
+    "fx": [
+     "strobe"
+    ]
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l34",
+   "cat": "Источники в кадре",
+   "name": "Театральный свет",
+   "en": "Theatrical light",
+   "sees": "Узкий луч прожектора сверху выхватывает героя круглым пятном, всё вокруг в темноте.",
+   "when": "Сцена, монолог, выступление, сюрреализм, герой в центре внимания.",
+   "phrase": "theatrical spotlight: a single narrow spotlight from [high above, slightly in front] isolates [the singer] in a sharp circle of light on [the stage floor]; everything outside the circle is black, faint haze shows the cone of the beam",
+   "notes": "",
+   "d": {
+    "lights": [
+     {
+      "az": 0,
+      "el": 65,
+      "c": "#FFF6E6",
+      "i": 1,
+      "h": 0.85
+     }
+    ],
+    "amb": 0.0,
+    "bg": "#060606",
+    "fx": [
+     "spot"
+    ]
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l29",
+   "cat": "Цвет",
+   "name": "Бирюза и оранжевый",
+   "en": "Teal and orange",
+   "sees": "Тёплый оранжевый на коже против холодного бирюзового фона и теней. Популярная гамма блокбастеров.",
+   "when": "Блокбастеры, экшен, реклама, киношный вид.",
+   "phrase": "teal and orange: warm orange light on [the skin and the foreground] from [frame left], cool teal in the shadows and the background; a strong complementary colour contrast, natural skin tones",
+   "notes": "По сути это грейд: можно писать и в COLOR GRADE. Легко перебрать, поэтому «natural skin tones» лучше оставить.",
+   "d": {
+    "lights": [
+     {
+      "az": -55,
+      "el": 20,
+      "c": "#FF9445",
+      "i": 1,
+      "h": 0.4
+     },
+     {
+      "az": 120,
+      "el": 20,
+      "c": "#2FB5B0",
+      "i": 0.75,
+      "h": 0.3
+     }
+    ],
+    "amb": 0.05,
+    "bg": "#0F3B3E"
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
+  },
+  {
+   "id": "l30",
+   "cat": "Цвет",
+   "name": "Красный монохром",
+   "en": "Monochrome red",
+   "sees": "Весь кадр в красном свете: тревога, опасность, страсть, фотолаборатория.",
+   "when": "Хоррор, триллер, тревожные сцены, клубы, проявочная.",
+   "phrase": "monochrome red: the whole scene is lit only by [a red bulb]; everything is a shade of red and black, no other colours, deep red shadows",
+   "notes": "Ограничение цвета держит фраза «no other colours», как в шапке T22.",
+   "d": {
+    "lights": [
+     {
+      "az": 40,
+      "el": 35,
+      "c": "#FF2A2A",
+      "i": 1,
+      "h": 0.5
+     }
+    ],
+    "amb": 0.03,
+    "bg": "#2A0404"
+   },
+   "source": "Список схем — по ролику Rourke Sefton-Minns «34 lighting styles every AI filmmaker should know»; описания и фразы наши",
+   "url": "https://www.instagram.com/p/DfXaQcyoaJ5/"
   }
  ],
  "rules": [
@@ -1550,88 +2774,95 @@
    "code": "R13"
   },
   {
+   "id": "r105",
+   "cat": "Формат и кредиты",
+   "text": "Длину генераций считаем от голоса. Лучше записать закадр до генерации сцен со словами и привязать планы к таймкодам фраз (таблица «фраза → план»). До записи прикидываем: около 3,6 слога в секунду с паузами и плюс секунда воздуха на блок; блок длиннее 15 с делим на несколько клипов. Добавили текст — сразу пересчитали длину фильма.",
+   "why": "Записанный закадр с репликами удлинил фильм почти на полторы минуты против плана, и одной сцене понадобилось 60 с вместо 30.",
+   "code": "R14"
+  },
+  {
    "id": "r07",
    "cat": "Референсы и теги",
    "text": "Перед запуском у каждого @тега должен стоять ID элемента, выбранного из списка @.",
    "why": "Тег простым текстом значит, что элемент не прикреплён; генерация падала на последних секундах.",
-   "code": "R14"
+   "code": "R15"
   },
   {
    "id": "r08",
    "cat": "Референсы и теги",
    "text": "В описании элемента не упоминаем через @ другие элементы, которых нет в генерации.",
    "why": "Модель ищет такой тег среди картинок и путается.",
-   "code": "R15"
+   "code": "R16"
   },
   {
    "id": "r09",
    "cat": "Референсы и теги",
    "text": "@тег не ставим в план, где этого объекта нет.",
    "why": "Модель затащит его в кадр.",
-   "code": "R16"
+   "code": "R17"
   },
   {
    "id": "r10",
    "cat": "Референсы и теги",
    "text": "Мелкие детали (текст, лого, цвет, сторона аксессуара) дублируем словами, даже если они видны на референсе.",
    "why": "Модель теряет то, что было только на картинке.",
-   "code": "R17"
+   "code": "R18"
   },
   {
    "id": "r11",
    "cat": "Референсы и теги",
    "text": "Шапки стилей вставляем дословно, без перефразирования.",
    "why": "Своя формулировка дала стилистически другого персонажа.",
-   "code": "R18"
+   "code": "R19"
   },
   {
    "id": "r12",
    "cat": "Референсы и теги",
    "text": "Утверждённый лист-эталон манеры прикладываем ко всем генерациям проекта.",
    "why": "Так листы, локации и предметы выходят в одной манере.",
-   "code": "R19"
+   "code": "R20"
   },
   {
    "id": "r42",
    "cat": "Референсы и теги",
    "text": "Картинка даёт облик, а кто чем владеет, где лежит предмет и кто действует — пишем словами.",
    "why": "Иначе модель сама решает, у кого в руках предмет.",
-   "code": "R20"
+   "code": "R21"
   },
   {
    "id": "r43",
    "cat": "Референсы и теги",
    "text": "Нежелательная деталь уже есть на референсе — правим картинку; словами её не сотрёшь.",
    "why": "Модель держится за то, что видит.",
-   "code": "R21"
+   "code": "R22"
   },
   {
    "id": "r44",
    "cat": "Референсы и теги",
    "text": "Из видео-референса берём только нужное (маршрут камеры, кадр или тайминг) и пишем это прямо; можно взять только первые секунды.",
    "why": "Иначе модель копирует и исполнение, и место.",
-   "code": "R22"
+   "code": "R23"
   },
   {
    "id": "r56",
    "cat": "Референсы и теги",
    "text": "Реальный продукт называем точно: марку и модель, и какую деталь видим (какая клавиша, какая кнопка).",
    "why": "Общее слово вроде «клавиатура» модель рисует как угодно.",
-   "code": "R23"
+   "code": "R24"
   },
   {
    "id": "r57",
    "cat": "Референсы и теги",
    "text": "Состояние предмета держим через всю сцену и пишем в каждом плане (поводок пристёгнут или лежит на дорожке). Если модель предмет потеряла, решаем сюжетно и дальше держим новое состояние.",
    "why": "Поводок то был, то пропадал. Решили сюжетом, что карабин отстегнулся, и переделали две вставки по 4 с вместо всей генерации.",
-   "code": "R24"
+   "code": "R25"
   },
   {
    "id": "r58",
    "cat": "Референсы и теги",
    "text": "Мелкий предмет описываем размером и хватом: «маленький театральный бинокль без ручки, держат двумя руками». Вид через оптику — сразу резкий, без наводки.",
    "why": "После этого уточнения бинокль вышел как надо.",
-   "code": "R25",
+   "code": "R26",
    "img": [
     {
      "src": "img/rule-binocular.webp",
@@ -1652,14 +2883,28 @@
    "cat": "Референсы и теги",
    "text": "Видео-референс движения чистим до загрузки: обрезаем интерфейс, убираем музыку, оставляем нужные секунды, длинный клип делим на части.",
    "why": "В референсе должно остаться только движение: модель тянет из клипа всё, что в нём есть.",
-   "code": "R26"
+   "code": "R27"
+  },
+  {
+   "id": "r108",
+   "cat": "Референсы и теги",
+   "text": "Промт сцены пишем после того, как увидели плейты: якорь @тега описывает то, что реально на картинке. Плейт с чёрной рамкой обрезаем до чистого 16:9. Цвет и зерно плейта Seedance тянет в кадр даже со строкой «its colours do not carry over», поэтому решаем заранее: цвет не нужен — перекрашиваем плейт до вложения; нужен — пишем его в якоре и в COLOR GRADE как цвет этого плана. Лишний яркий цвет на плейте (красное окно, плакат) глушим в LOCKS.",
+   "why": "План взял с плейта жёлтый монохром с зерном и выпал из цвета остальной сцены.",
+   "code": "R28"
+  },
+  {
+   "id": "r111",
+   "cat": "Референсы и теги",
+   "text": "Перегенерируя кусок внутри сцены, прикладываем кадры соседних планов с теми же людьми и всегда плейт локации. Каждому вложению пишем задачу («@image3 is a reference for the crowd only: the same people, clothes and places»), а в тексте — что люди те же, что на этих кадрах. Новых людей не придумываем.",
+   "why": "Так перегенерированный кусок склеился с соседними планами без новых лиц в толпе.",
+   "code": "R29"
   },
   {
    "id": "r60",
    "cat": "Листы",
    "text": "Новый лист пишем по шаблону утверждённого листа: тот же порядок блоков, шапка стиля дословно.",
    "why": "Своя перефразировка шапки дала стилистически другого персонажа, а лист по шаблону сработал.",
-   "code": "R27",
+   "code": "R30",
    "img": [
     {
      "src": "img/sheet-vint-a.webp",
@@ -1676,7 +2921,7 @@
    "cat": "Листы",
    "text": "К новому листу прикладываем утверждённый лист-эталон и пишем, что на нём другой человек: берём только манеру и раскладку.",
    "why": "Так весь каст серии вышел в одной манере с первым листом.",
-   "code": "R28",
+   "code": "R31",
    "img": [
     {
      "src": "img/sheet-paint-a.webp",
@@ -1689,32 +2934,25 @@
    ]
   },
   {
-   "id": "r62",
-   "cat": "Листы",
-   "text": "Лица описываем взрослыми. Мягкость и застенчивость передаём позой и взглядом, а не «милыми» чертами.",
-   "why": "«Милое» описание лица дало милашку.",
-   "code": "R29"
-  },
-  {
    "id": "r63",
    "cat": "Листы",
    "text": "В LOCKS листа фиксируем то, что плывёт между панелями: одно лицо во всех панелях, головы на одном уровне, ноги на одной линии, стороны аксессуаров (сумка на ЛЕВОМ плече).",
    "why": "Без фиксаторов стороны и пропорции от панели к панели расходятся.",
-   "code": "R30"
+   "code": "R32"
   },
   {
    "id": "r64",
    "cat": "Листы",
    "text": "Картинку, которая вышла не в той манере (фото вместо живописи), не перегенерируем, а перерисовываем редактированием (Repaint) с листом-эталоном: композиция и предметы остаются.",
    "why": "Дешевле новой генерации, и удачная композиция сохраняется.",
-   "code": "R31"
+   "code": "R33"
   },
   {
    "id": "r65",
    "cat": "Листы",
    "text": "В предметном кадре до четырёх предметов: так каждый читается, и видео-модель их не путает. Все предметы одного кадра занимают один референс-слот.",
    "why": "Больше четырёх блюд превращаются в кашу.",
-   "code": "R32",
+   "code": "R34",
    "img": [
     {
      "src": "img/still-dishes.webp",
@@ -1728,7 +2966,7 @@
    "cat": "Листы",
    "text": "Связанные локации генерируем цепочкой: к следующей прикладываем уже готовую (пруд → палуба → обратный ракурс), чтобы место совпало снаружи и изнутри.",
    "why": "Так место совпало на всех трёх картинках.",
-   "code": "R33",
+   "code": "R35",
    "img": [
     {
      "src": "img/loc-lake.webp",
@@ -1745,95 +2983,193 @@
    ]
   },
   {
+   "id": "r93",
+   "cat": "Листы",
+   "text": "Серию картинок в одном стиле держим так: первым референсом — уже одобренная картинка серии, вторым — эскиз позы, и в промте «from the same series as the first attached image… use the second attached drawing for the pose only». Упаковку стилизуем так же: первым — фото товара (дизайн и надписи), вторым — одобренная картинка (свет и материал); надписи перечисляем в кавычках.",
+   "why": "12 генераций из 12 вышли одной серией, надписи на упаковке без ошибок.",
+   "code": "R36"
+  },
+  {
+   "id": "r95",
+   "cat": "Листы",
+   "text": "Фотореалистичные листы не исправляем редактированием: правим промт и генерируем лист заново. Редактирование (Repaint) оставляем для смены живописной манеры.",
+   "why": "После редактирования фотореалистичный лист выходил грязным.",
+   "code": "R37"
+  },
+  {
+   "id": "r97",
+   "cat": "Листы",
+   "text": "Локации для горизонтального видео не делаем триптихом: каждый вид — отдельная картинка 16:9 («A single 16:9 horizontal film still: one continuous frame, not a sheet, no panels»). Первый вид нового места генерируем с приложенным видом соседнего места, остальные — с первым видом этого места. Для городов прошлого в LOCKS: «no overhead wires, no antennas on the roofs».",
+   "why": "Триптих 16:9 вышел тремя узкими вертикальными кадрами, а на крышах проскочили провода и антенны.",
+   "code": "R38"
+  },
+  {
+   "id": "r98",
+   "cat": "Листы",
+   "text": "Второй вид того же места модель часто рисует копией приложенного первого. В строке про вложение пишем прямо: «shot from a different position… do not repeat its viewpoint or composition; the camera now stands where the VIEW line says». Не помогло — генерируем второй вид без вложения или обходимся одним.",
+   "why": "Вид изнутри арки с приложенным видом с улицы вышел тем же кадром.",
+   "code": "R39"
+  },
+  {
+   "id": "r62",
+   "cat": "Лица и глаза",
+   "text": "Лица описываем взрослыми. Мягкость и застенчивость передаём позой и взглядом, а не «милыми» чертами.",
+   "why": "«Милое» описание лица дало милашку.",
+   "code": "R40"
+  },
+  {
+   "id": "r24",
+   "cat": "Лица и глаза",
+   "text": "Для властных и злых героев не пишем мягких слов (soft, delicate, rounded). Характер задаём чертами лица и выражением, выражение фиксируем в LOCKS.",
+   "why": "Властная героиня вышла милашкой.",
+   "code": "R41"
+  },
+  {
+   "id": "r25",
+   "cat": "Лица и глаза",
+   "text": "Грим и детали эпохи пишем прямо и добавляем, что они не современные.",
+   "why": "Губы героини античной эпохи вышли как помада 90-х.",
+   "code": "R42"
+  },
+  {
+   "id": "r94",
+   "cat": "Лица и глаза",
+   "text": "Цвет глаз на листе персонажа задаём словами про радужку и белки: «natural eyes with dark-brown irises, clean white sclera around each iris, a black pupil, a small catchlight». Слова «contact lenses» и «almost black» не пишем.",
+   "why": "«Тёмные линзы, почти чёрные» дали сплошь чёрные глаза без белков, как в хорроре.",
+   "code": "R43"
+  },
+  {
+   "id": "r96",
+   "cat": "Лица и глаза",
+   "text": "Естественно яркие губы пишем через румянец: «lips of a deep natural rosy red, the same tone as the flush on his cheeks, matte, soft-edged, no lipstick, no gloss, no drawn lip line». «Red lips» и «vivid crimson» модель рисует помадой.",
+   "why": "Даже с оговоркой «not make-up» вышла яркая помада с чётким контуром.",
+   "code": "R44"
+  },
+  {
+   "id": "r113",
+   "cat": "Лица и глаза",
+   "text": "В видео-промтах глаза не описываем совсем: ни цвет, ни блеск, ни отражения, и в грейде их не красим. Цвет радужки приходит с листа персонажа. Если он всё же уплыл, перегенерируем план со стартовым кадром, где глаза правильные: перекраска маской на монтаже рябит и видна на большом экране.",
+   "why": "Строка грейда про зеленоватый отсвет в глазах перекрасила карие глаза в зелёные; просьба об отражении луны заменила радужки светящимися дисками; маску перекраски было видно на большом экране.",
+   "code": "R45"
+  },
+  {
    "id": "r13",
    "cat": "Массовка и геометрия",
    "text": "Листы локаций пустые. Массовку пишем текстом в карте локации, первом кадре, действии и фиксаторах: сколько людей и где.",
    "why": "В сцене в опере зал вышел пустым.",
-   "code": "R34"
+   "code": "R46"
   },
   {
    "id": "r14",
    "cat": "Массовка и геометрия",
    "text": "Если места должны быть далеко друг от друга, пишем расстояние в метрах и что между ними; в кадре одного места другое не показываем.",
    "why": "Ложа напротив вышла соседней.",
-   "code": "R35"
+   "code": "R47"
   },
   {
    "id": "r15",
    "cat": "Массовка и геометрия",
    "text": "Геометрию описываем явно: где камера, куда смотрит, кто слева и кто справа в кадре, куда едет транспорт.",
    "why": "Проспект «упирался» в ворота парка.",
-   "code": "R36"
+   "code": "R48"
   },
   {
    "id": "r16",
    "cat": "Массовка и геометрия",
    "text": "Рассадку и стороны героев фиксируем один раз и повторяем в каждом промте. Если в кадре видна группа, в ней все, и у каждого своё маленькое действие.",
    "why": "Главный герой остался на ложе один, когда соседей не прописали.",
-   "code": "R37"
+   "code": "R49"
   },
   {
    "id": "r17",
    "cat": "Массовка и геометрия",
    "text": "Число людей в лодках, рядах и группах пишем отдельно.",
    "why": "Лодки вышли без гребцов.",
-   "code": "R38"
+   "code": "R50"
   },
   {
    "id": "r18",
    "cat": "Массовка и геометрия",
    "text": "Массивный объект в движении (плот, корабль) показываем проплывающим фоном за героями, а не общим планом снаружи.",
    "why": "Общий план с трогающимся плотом глючил: шнуры и плот перескакивали.",
-   "code": "R39"
+   "code": "R51"
   },
   {
    "id": "r51",
    "cat": "Массовка и геометрия",
    "text": "Вместо запретов пишем счётчики: «Count of X: N».",
    "why": "Запрет называет то, чего не должно быть, и модель это рисует.",
-   "code": "R40"
+   "code": "R52"
   },
   {
    "id": "r67",
    "cat": "Массовка и геометрия",
    "text": "На средних планах модель рисует горсть мелких предметов вместо одного-двух. Точное число показываем отдельной макро-вставкой и пишем жест (взять щепотью).",
    "why": "На среднем плане вышла горсть таблеток.",
-   "code": "R41"
+   "code": "R53"
   },
   {
    "id": "r68",
    "cat": "Массовка и геометрия",
    "text": "В кадрах пира, зала и толпы пишем, кто и сколько сидит на заднем плане, и добавляем в LOCKS «no empty couches» или «no empty seats».",
    "why": "Пустые ложа на заднем плане читаются как ошибка.",
-   "code": "R42"
+   "code": "R54"
   },
   {
    "id": "r69",
    "cat": "Массовка и геометрия",
    "text": "Локация для бега и проезда держит свободный центральный коридор, массовка стоит по краям.",
    "why": "Герою нужно место для движения по маршруту референса.",
-   "code": "R43"
+   "code": "R55"
+  },
+  {
+   "id": "r102",
+   "cat": "Массовка и геометрия",
+   "text": "Направление движения держим одним во всех планах сцены (правило 180°): камера всегда с одной стороны от героя, и по экрану он идёт в одну сторону. В CAMERA: «The camera always stays on [his] right, so he always moves from frame left to frame right, toward [the goal]», в LOCKS: «he never walks toward the camera».",
+   "why": "Первый план сняли спереди, последний сзади: на экране герой бежал сначала в одну сторону, потом в другую.",
+   "code": "R56"
+  },
+  {
+   "id": "r103",
+   "cat": "Массовка и геометрия",
+   "text": "Отражение в окне описываем как изображение внутри стекла: «in its black glass, held inside the window frame, [the moon] is reflected, a mirror image in the pane; the wall around the window stays in shadow», и в LOCKS: «[the moon] appears in the window only as a reflection inside the glass». Просто «луна в окне» модель рисует кругом света на стене.",
+   "why": "Луна у окна вышла световым кругом на штукатурке, будто её проецируют на стену.",
+   "code": "R57"
+  },
+  {
+   "id": "r109",
+   "cat": "Массовка и геометрия",
+   "text": "С плейтом сверху вниз (лестничный пролёт, двор-колодец) прямо пишем, где герой и где камера: «far below, at the very bottom of the well, small in the frame; he stays on the floor the whole time», камера — «high above, looking straight down the centre». Не смешиваем это с «camera two steps above him».",
+   "why": "Герой всплыл в середину пролёта, между этажами, и уставился в объектив.",
+   "code": "R58"
+  },
+  {
+   "id": "r112",
+   "cat": "Массовка и геометрия",
+   "text": "Героя, которого не должно быть в плане, в тексте не называем вовсе — даже «без него» или «он уже ушёл»: модель его дорисует. Пишем только тех, кто в кадре.",
+   "why": "Названный в промте второй герой появлялся там, где его быть не должно.",
+   "code": "R59"
   },
   {
    "id": "r19",
    "cat": "Стиль и динамика",
    "text": "Камера заметно движется в каждом плане; static и «slow push-in 5%» в одиночку не пишем.",
    "why": "Вставка со статичной камерой вышла мёртвой.",
-   "code": "R44"
+   "code": "R60"
   },
   {
    "id": "r20",
    "cat": "Стиль и динамика",
    "text": "Все в действии, в моменте между движениями. Слова lazy, still, motionless, half-closed eyes, without blinking не пишем.",
    "why": "«Скучно, нет живости»: так выглядели первые версии со словами покоя.",
-   "code": "R45"
+   "code": "R61"
   },
   {
    "id": "r21",
    "cat": "Стиль и динамика",
    "text": "Важное действие получает свой план, крупность и таймкод.",
    "why": "Мальчик на плечах в общем плане со спины пропал.",
-   "code": "R46",
+   "code": "R62",
    "img": [
     {
      "src": "img/tpl-paint-1.webp",
@@ -1847,14 +3183,14 @@
    "cat": "Стиль и динамика",
    "text": "Операторские слова подбираем под стиль: handheld, тряска и боке уместны в кино и ломают живопись и анимацию.",
    "why": "Ручная камера и киносвет дали гиперреализм вместо живописи.",
-   "code": "R47"
+   "code": "R63"
   },
   {
    "id": "r23",
    "cat": "Стиль и динамика",
    "text": "В живописи не пишем фото-слова: hyperrealistic, near-photographic (кроме листов), shallow depth, macro, caustic, condensation, straight verticals, градусы объектива.",
    "why": "Первые натюрморты и локации вышли фотографиями.",
-   "code": "R48",
+   "code": "R64",
    "img": [
     {
      "src": "img/still-photo.webp",
@@ -1869,74 +3205,60 @@
    ]
   },
   {
-   "id": "r24",
-   "cat": "Стиль и динамика",
-   "text": "Для властных и злых героев не пишем мягких слов (soft, delicate, rounded). Характер задаём чертами лица и выражением, выражение фиксируем в LOCKS.",
-   "why": "Властная героиня вышла милашкой.",
-   "code": "R49"
-  },
-  {
-   "id": "r25",
-   "cat": "Стиль и динамика",
-   "text": "Грим и детали эпохи пишем прямо и добавляем, что они не современные.",
-   "why": "Губы героини античной эпохи вышли как помада 90-х.",
-   "code": "R50"
-  },
-  {
    "id": "r26",
    "cat": "Стиль и динамика",
    "text": "Еду в видео фиксируем словами «lies perfectly still»; движение даём камерой и руками.",
    "why": "Запечённая рыба махала плавником.",
-   "code": "R51"
+   "code": "R65"
   },
   {
    "id": "r48",
    "cat": "Стиль и динамика",
    "text": "Крупность, угол и движение камеры — три отдельных решения; в тестах меняем по одному.",
    "why": "Так легче поймать лишнюю панораму, зум или дрейф.",
-   "code": "R52"
+   "code": "R66"
   },
   {
    "id": "r49",
    "cat": "Стиль и динамика",
    "text": "Крупность — граница кадра, а не объектив: сначала называем границу, потом фокусное.",
    "why": "Модель путает «крупный план» и «длиннофокусный объектив».",
-   "code": "R53"
+   "code": "R67"
   },
   {
    "id": "r50",
    "cat": "Стиль и динамика",
    "text": "Камерные события привязываем к физическим событиям в кадре (выдох, поворот, ладонь на стойке), а не к словам реплики.",
    "why": "Слова модель слышит плохо, действие видит.",
-   "code": "R54"
+   "code": "R68"
   },
   {
    "id": "r70",
    "cat": "Стиль и динамика",
    "text": "Для рваного ритма не пишем dissolve, slow, soft, unhurried, settles. Пишем jump cuts с таймкодами (~0,3 с), скачки экспозиции, step-printed stutter, smash cut, «stops dead».",
    "why": "Мягкие слова модель сделала честными наплывами с двойной экспозицией, и ролик потерял дерзость референса.",
-   "code": "R55"
+   "code": "R69"
   },
   {
    "id": "r71",
    "cat": "Стиль и динамика",
    "text": "Слова commercial и advertisement в STYLE не пишем: стиль задаём описанием картинки, а не жанром «реклама».",
    "why": "Так решили в рекламных роликах: стиль задаётся описанием картинки.",
-   "code": "R56"
+   "code": "R70"
   },
   {
    "id": "r72",
    "cat": "Стиль и динамика",
    "text": "Реакции героев взрослые и сдержанные: испуг — опустить взгляд, сглотнуть, отвернуться.",
    "why": "Просьба о «панике» дала детскую суету, а сдержанный испуг сработал.",
-   "code": "R57"
+   "code": "R71"
   },
   {
    "id": "r89",
    "cat": "Стиль и динамика",
    "text": "В живописи крупные планы лиц ночью с огнями на фоне уходят в кино: огни размываются в боке, кожа становится фотографической. Самый тесный план — крупный 29–35°, без сверхкрупных глаз; огни на фоне пишем «painted as small clear dabs of color, sharp, no blurred circles of light»; лицо — «painted like a portrait by an academic master, visible brushstrokes, matte skin»; в LOCKS «no bokeh».",
    "why": "В серии крупный план героя и сверхкрупные глаза вышли живым кино, а общие планы остались живописью. Вставка с крупностью 35° и огнями «мазками» вышла живописью, без боке.",
-   "code": "R58",
+   "code": "R72",
    "img": [
     {
      "src": "img/rule-bokeh-bad.webp",
@@ -1951,207 +3273,284 @@
    ]
   },
   {
+   "id": "r92",
+   "cat": "Стиль и динамика",
+   "text": "В ролике-витрине (флипбуке работ) все кадры в одном материале и свете. Живые фото, плоские картинки и 3D вперемешку разрушают настроение: переводим всё в один мир, например в серию 3D-фигурок на одном фоне. Плоскими оставляем только логотипы.",
+   "why": "Набор картинок в разных стилях не держал настроение; когда герои и упаковка стали фигурками одной серии, ролик собрался.",
+   "code": "R73"
+  },
+  {
+   "id": "r99",
+   "cat": "Стиль и динамика",
+   "text": "В 15 секундах — не меньше четырёх планов, и камера в каждом заметно движется (от 4 км/ч: проходы, рывки, хлёсткие панорамы). Один непрерывный план на 15 с не ставим: вторая половина выходит статичной.",
+   "why": "Один план с подъёмом крана на 5 км/ч: с 8-й по 15-ю секунду кадр почти не двигался.",
+   "code": "R74"
+  },
+  {
+   "id": "r100",
+   "cat": "Стиль и динамика",
+   "text": "Кадр глазами героя не называем «through his eyes» или «point-of-view»: Seedance рисует круглую чёрную маску, как в бинокле. Пишем: «the camera takes [his] place at his eye height and shows what he sees; he is not in this shot. Every shot is an ordinary full 16:9 film frame, sharp and evenly exposed right to all four corners», а в LOCKS — «no vignette, no round or binocular mask, no dark border».",
+   "why": "Оба плана от первого лица вышли в круглой маске, будто через бинокль.",
+   "code": "R75"
+  },
+  {
+   "id": "r104",
+   "cat": "Стиль и динамика",
+   "text": "Нарастание (крещендо) задаём скоростями по планам: 3 → 5 → 9 км/ч → стоп, и камера ускоряется вместе с героем. В описании сцены и в первом плане не пишем «спешит» или «быстро идёт»: модель ставит конечную скорость с первой секунды. В LOCKS: «His pace only rises: slow walk, then brisk walk, then near-run, then a dead stop».",
+   "why": "Герой бежал с первого кадра, хотя должен был сначала медленно идти и только потом сорваться.",
+   "code": "R76"
+  },
+  {
+   "id": "r114",
+   "cat": "Стиль и динамика",
+   "text": "Слова про замедленное время сна (dream time, slow motion, time stretches) в шапке модель применяет ко всем планам, и резкое действие выходит слоу-мо. Скорость пишем по планам: «real-time speed» для действия, замедление — только в задуманном плане, с таймкодом.",
+   "why": "Резкая остановка героя вышла замедленной и выпала из ритма сцены.",
+   "code": "R77"
+  },
+  {
    "id": "r27",
    "cat": "Звук",
    "text": "Музыку в промт не пишем никогда: только саунд-дизайн. Музыка кладётся на монтаже.",
    "why": "Так трек под контролем, а модель не сочиняет свою музыку.",
-   "code": "R59"
+   "code": "R78"
   },
   {
    "id": "r28",
    "cat": "Звук",
    "text": "Звуки воды в AUDIO не пишем; если вода в кадре, под промтом пометка вырезать звук на монтаже.",
    "why": "Seedance делает воду резкой и синтетической.",
-   "code": "R60"
+   "code": "R79"
   },
   {
    "id": "r29",
    "cat": "Звук",
    "text": "Музыкант, который не должен петь, стоит с закрытым ртом.",
    "why": "Иначе модель добавляет пение.",
-   "code": "R61"
+   "code": "R80"
   },
   {
    "id": "r30",
    "cat": "Звук",
    "text": "Еда: каждый укус со своим временем и звуком по текстуре.",
    "why": "По умолчанию один и тот же звук укуса на всё.",
-   "code": "R62"
+   "code": "R81"
   },
   {
    "id": "r73",
    "cat": "Звук",
    "text": "AUDIO открываем прямым запретом «No music, no score, no melody», в LOCKS пишем «zero music». Тональных звуков (поющая чаша, колокольчик, гул) не пишем: модель строит из них мелодию.",
    "why": "Из тонального звука модель достраивает музыку.",
-   "code": "R63"
+   "code": "R82"
   },
   {
    "id": "r74",
    "cat": "Звук",
    "text": "Для рваного монтажа в AUDIO ставим резкий звук на каждую склейку: удар каблука, щелчок затвора.",
    "why": "Звук держит ритм склеек и делает их жёстче.",
-   "code": "R64"
+   "code": "R83"
   },
   {
    "id": "r75",
    "cat": "Звук",
    "text": "Ключевой момент можно дать акустическим вакуумом: звук обрывается, и следующий звук бьёт сильнее.",
    "why": "Приём из сценария рекламного ролика.",
-   "code": "R65"
+   "code": "R84"
+  },
+  {
+   "id": "r106",
+   "cat": "Звук",
+   "text": "Seedance добавляет мелодию в атмосферные сцены (сон, тишина, панорама города) даже при «No music». AUDIO начинаем так: «Diegetic sound only, like a raw location recording with no post-production: there is no music of any kind — no score, no melody, no tune, no humming, no choir, no drone, no musical tones, no instruments.» Тишину пишем как почти-тишину с конкретными звуками, звон в ушах — «hiss, a noise, not a musical note». Если мелодия всё равно есть, а картинка хорошая, не перегенерируем: разделяем звук на гармоническую и ударную части (HPSS) и оставляем ударную — шаги, треск, шорохи.",
+   "why": "Мелодия пролезала в четырёх дублях подряд; после разделения шаги и треск остались, а мелодия ушла.",
+   "code": "R85"
+  },
+  {
+   "id": "r115",
+   "cat": "Звук",
+   "text": "Мелодия Seedance прячется и в ударной части: после разделения звука остаются тики бита. Если в плане нет нужных звуков, глушим клип целиком и кладём тон помещения. Нужные звуки самого клипа (смех, реплику, удар) после любой чистки проверяем на слух: фильтр может их срезать — тогда вырезаем их из исходника отдельно и поднимаем в миксе.",
+   "why": "После чистки в начале плана остался посторонний стук, а зловещий смех стал почти не слышен.",
+   "code": "R86"
   },
   {
    "id": "r31",
    "cat": "Липсинк",
    "text": "Одна реплика — одна короткая генерация, аудио начинается с 0,0 с.",
    "why": "Попасть липсинком в середину длинной генерации ненадёжно.",
-   "code": "R66"
+   "code": "R87"
   },
   {
    "id": "r32",
    "cat": "Липсинк",
    "text": "Аудио короче 2 с Higgsfield не принимает: дополняем тишиной в конце, начало не трогаем.",
    "why": "Короткая реплика длилась 1,8 с.",
-   "code": "R67"
+   "code": "R88"
   },
   {
    "id": "r33",
    "cat": "Липсинк",
    "text": "На монтаже звук клипа с репликой глушим и кладём оригинальную запись по движению губ.",
    "why": "Seedance сдвигает реплику и путает слова.",
-   "code": "R68"
+   "code": "R89"
   },
   {
    "id": "r52",
    "cat": "Липсинк",
    "text": "Второй способ реплики: образец голоса закрепить за героем, а текст реплики написать в промте — модель озвучит сама. Основной способ — готовая запись реплики под липсинк.",
    "why": "Ещё не проверено: тестировать коротким дублем.",
-   "code": "R69"
+   "code": "R90"
   },
   {
    "id": "r76",
    "cat": "Липсинк",
    "text": "Seedance сдвигает реплику внутри клипа на 0,5–1,5 с. На монтаже клип подрезаем по фактическому началу реплики.",
    "why": "Реплики начинались с 0,5, 1,5 и 1,2 с.",
-   "code": "R70"
+   "code": "R91"
   },
   {
    "id": "r77",
    "cat": "Липсинк",
    "text": "Язык реплик решаем на проект сразу: от него зависят голоса, субтитры и липсинк.",
    "why": "У разных проектов разная аудитория.",
-   "code": "R71"
+   "code": "R92"
   },
   {
    "id": "r78",
    "cat": "Текст и лого",
    "text": "Логотип даём PNG-элементом, а не словами. Если он сливается с фоном (чёрная надпись на чёрной обложке), делаем контрастную версию элемента.",
    "why": "Чёрная надпись на чёрной обложке не читалась, а белая версия сработала.",
-   "code": "R72"
+   "code": "R93"
   },
   {
    "id": "r79",
    "cat": "Текст и лого",
    "text": "Слоган и титры, которые должны стоять ровно, в промт не пишем: модель их плавит. Накладываем на монтаже.",
    "why": "Надпись в генерации может поплыть.",
-   "code": "R73"
+   "code": "R94"
   },
   {
    "id": "r80",
    "cat": "Текст и лого",
    "text": "Где модели хочется поставить надпись (дверь, вывеска, коробка), прямо пишем «no signage, no readable lettering».",
    "why": "Над дверью ложи сама появилась табличка EXIT.",
-   "code": "R74"
+   "code": "R95"
   },
   {
    "id": "r81",
    "cat": "Текст и лого",
    "text": "Под слоган в конце ролика оставляем длинный статичный план.",
    "why": "Слоган накладывается на монтаже, ему нужен спокойный кадр.",
-   "code": "R75"
+   "code": "R96"
   },
   {
    "id": "r82",
    "cat": "Монтаж",
    "text": "Под репликами не подкладываем усиленный фон из другого ролика: +7 дБ тащат за собой его звон и гомон.",
    "why": "Под репликами была слышна «грязь».",
-   "code": "R76"
+   "code": "R97"
   },
   {
    "id": "r83",
    "cat": "Монтаж",
    "text": "Музыку под диалогом опускаем ещё на ~8 дБ и поднимаем медленно (release ~1,3 с), иначе в паузах между фразами она подскакивает почти до уровня голоса.",
    "why": "Вторая причина «грязи» под репликами.",
-   "code": "R77"
+   "code": "R98"
   },
   {
    "id": "r84",
    "cat": "Монтаж",
    "text": "Речь ускоряем через atempo (WSOLA), а не через rubberband: фазовый вокодер даёт металлический призвук.",
    "why": "Речь пришлось ускорить в 1,16 раза под губы.",
-   "code": "R78"
+   "code": "R99"
   },
   {
    "id": "r85",
    "cat": "Монтаж",
    "text": "Ключевые слова закадра кладём на их планы (сдвигаем блоки голоса), а удары музыки — на склейки.",
    "why": "Ключевые слова попали на свои планы, а удар трека — на склейку.",
-   "code": "R79"
+   "code": "R100"
   },
   {
    "id": "r86",
    "cat": "Монтаж",
    "text": "Сгенерированные склейки плавают на ±0,1–0,2 с: на монтаже двигаем их на биты трека.",
    "why": "Склейки в генерации не попадают в бит точно, даже с таймкодами.",
-   "code": "R80"
+   "code": "R101"
   },
   {
    "id": "r87",
    "cat": "Монтаж",
    "text": "Концовка: последний кадр замирает на 3–4 с, как картина, и уходит в чёрное под затухание музыки.",
    "why": "Даёт ролику точку.",
-   "code": "R81"
+   "code": "R102"
+  },
+  {
+   "id": "r107",
+   "cat": "Монтаж",
+   "text": "Клипы не сцепляем стартовым кадром (последний кадр прошлого клипа как первый кадр нового): склейка выходит мутной. Первый план нового клипа придумываем как чистую монтажную склейку с последним планом прошлого: меняем крупность на две ступени или точку съёмки на 30° и больше, либо режем по взгляду, действию, черноте или форме (трещина → трещина). Стартовую картинку берём только для новой композиции, а мутное начало срезаем на монтаже (0,2–0,5 с).",
+   "why": "Склейки через стартовый кадр выходили смазанными.",
+   "code": "R103"
+  },
+  {
+   "id": "r116",
+   "cat": "Монтаж",
+   "text": "Иерархия громкости: голос (закадр и реплики) громче всего, музыка ровно и чисто под ним и плавно опускается под фразами, саунд-дизайн тише всего. Если в сцене «каша», готовый микс не правим, а пересобираем звук сцены начисто из исходников отдельными дорожками.",
+   "why": "Громкий саунд-дизайн под закадром превратил сцену в кашу; после пересборки по этой иерархии голос читается, а музыка звучит ровно.",
+   "code": "R104"
+  },
+  {
+   "id": "r117",
+   "cat": "Монтаж",
+   "text": "Ролик для соцсетей не начинаем с чёрного кадра: первый кадр — это обложка в ленте. Даже тёмное начало показывает что-то с первой секунды: силуэт, деталь, блик.",
+   "why": "Чёрный первый кадр в ленте выглядит как пустое или битое видео.",
+   "code": "R105"
+  },
+  {
+   "id": "r118",
+   "cat": "Монтаж",
+   "text": "Субтитры накладываем на монтаже: одна строка внизу кадра, фраза режется на короткие смысловые куски, время каждого куска ставим по звуку, а не делим текст поровну. Шрифт узкий жирный (например, DIN Pro Condensed Bold, 39 px при 1080p), светлая заливка с тёмной обводкой.",
+   "why": "Так строки читаются на любом фоне и не отстают от голоса.",
+   "code": "R106"
   },
   {
    "id": "r36",
    "cat": "Фильтры",
    "text": "Подача несексуальная: без ракурсов снизу на короткую одежду, крупно от ключиц, без тесных касаний и еды в рот крупно, ветер только в волосах и шарфах.",
    "why": "Блокировались кадры с ракурсом снизу на укороченные топы; сцену с парой на одном ложе фильтр принял за интимную.",
-   "code": "R82"
+   "code": "R107"
   },
   {
    "id": "r37",
    "cat": "Фильтры",
    "text": "Слова, которые модель превращает в удар (sparks, hit, impact, crash, bumper touching), не пишем без нужды.",
    "why": "Бампер «задевал» щенка.",
-   "code": "R83"
+   "code": "R108"
   },
   {
    "id": "r38",
    "cat": "Фильтры",
    "text": "Героинь не ставим на край высоты вместе с «Help!», без жестов «пистолет у виска».",
    "why": "Фильтр читает это как опасную сцену.",
-   "code": "R84"
+   "code": "R109"
   },
   {
    "id": "r39",
    "cat": "Фильтры",
    "text": "Только взрослые, и возраст пишем явно: «young women of about 20», а не «girls» или «youths».",
    "why": "Граница, которую не пересекаем.",
-   "code": "R85"
+   "code": "R110"
   },
   {
    "id": "r40",
    "cat": "Фильтры",
    "text": "Животные не страдают, транспорт их не касается: в кадрах с машиной животное вне кадра или высоко в воздухе с явным зазором.",
    "why": "Животные в кадре всегда в безопасности.",
-   "code": "R86"
+   "code": "R111"
   },
   {
    "id": "r88",
    "cat": "Фильтры",
    "text": "Опасное «почти» (колесо в сантиметре от щенка) собираем из двух планов: в одном спасение, в другом колесо по пустому месту. В одном кадре контакта нет.",
    "why": "Кадр, где бампер задел щенка, вырезали на монтаже.",
-   "code": "R87"
+   "code": "R112"
   }
  ]
 }
