@@ -14,7 +14,8 @@
 ## Ссылки на карточку и тему
 
 - `#templates/t07` — открыть шаблон (так же `#models/g01`, `#moves/m01`);
-- `#rules/Звук` — правила одной темы.
+- `#rules/Звук` — правила одной темы (так же `#templates/Листы`);
+- `#start` — блок «С чего начать», `#glossary` — словарь терминов.
 
 ## Как добавить запись
 
@@ -23,7 +24,9 @@
 - `templates`: `id`, `cat` (одна из `tcats`), `status` («Проверено», «Из гайда», «Заготовка»), `name`, `models`, `purpose`, `howto`, `notes`, `body`, по желанию `example` и `source`;
 - `models`: `id`, `cat` (одна из `gcats`), `status`, `name`, `models`, `when`, `limits`, `rules` (массив строк), `ours`, `source`, `url`;
 - `moves`: `id`, `type` (`push`, `arc`, `crane`, `track`, `fly`…), `status`, `name`, `sees`, `phrase`, `fov`, `speed`, `style`, `notes`;
-- `rules`: `id`, `code`, `cat` (одна из `rcats`), `text`, `why`.
+- `rules`: `id`, `code`, `cat` (одна из `rcats`), `text`, `why`;
+- `start`: шаги блока «С чего начать» — `title`, `text`, `links` (`label` и `href` вида `#templates/t11`);
+- `glossary`: словарь — `term`, `def`.
 
 Поля в [квадратных скобках] в шаблонах и фразах подсвечиваются как места, которые меняют под сцену.
 

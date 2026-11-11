@@ -51,6 +51,42 @@ p{margin:0}
 .lede span{color:var(--meta)}
 .stats{font-size:14px;color:var(--meta);font-variant-numeric:tabular-nums}
 
+/* ---------- с чего начать и словарь ---------- */
+.guide{display:grid;gap:0;padding-top:56px;scroll-margin-top:16px}
+.guide-box{scroll-margin-top:16px}
+.guide-box summary{display:flex;align-items:baseline;gap:14px;cursor:pointer;list-style:none;padding-bottom:16px}
+.guide-box summary::-webkit-details-marker{display:none}
+.guide-box summary h2{margin:0;font:500 clamp(22px,2.2vw,28px)/1.1 var(--font);letter-spacing:-.02em}
+.guide-toggle::after{content:"Свернуть";font-size:14px;color:var(--meta)}
+.guide-box:not([open]) .guide-toggle::after{content:"Показать"}
+.guide-box summary:hover .guide-toggle::after{color:var(--ink)}
+.guide-lede{max-width:62ch;color:var(--meta);font-size:15px;line-height:1.45;padding-bottom:22px}
+.steps{list-style:none;margin:0 0 28px;padding:0;display:grid;grid-template-columns:minmax(0,1fr);gap:0;counter-reset:st;border-top:1px solid var(--line)}
+@media (min-width:760px){.steps{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:32px}}
+@media (min-width:1160px){.steps{grid-template-columns:repeat(5,minmax(0,1fr));column-gap:28px}}
+.step{counter-increment:st;display:grid;align-content:start;gap:8px;padding:18px 0 20px;border-bottom:1px solid var(--hair)}
+@media (min-width:1160px){.step{border-bottom:0}}
+.step::before{content:"0" counter(st);font:500 12px/1 var(--font);color:var(--signal);letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.step h3{margin:0;font:600 16px/1.25 var(--font)}
+.step p{color:var(--meta);font-size:14px;line-height:1.45;max-width:46ch}
+.step-links{display:flex;flex-wrap:wrap;gap:6px;padding-top:4px}
+.step-links a{display:inline-block;padding:4px 10px;border:1px solid var(--line);font-size:13px;line-height:1.3;text-decoration:none}
+.step-links a:hover{border-color:var(--ink)}
+.gloss{border-top:1px solid var(--line);border-bottom:1px solid var(--line);scroll-margin-top:16px}
+.gloss summary{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;padding:16px 0;cursor:pointer;list-style:none;font:500 18px/1.2 var(--font)}
+.gloss summary::-webkit-details-marker{display:none}
+.gloss summary::before{content:"+";flex:none;width:14px;color:var(--meta);font-weight:400}
+.gloss[open] summary::before{content:"−"}
+.gloss summary .n{font-size:13px;font-weight:400;color:var(--meta);font-variant-numeric:tabular-nums}
+.gloss-hint{flex-basis:100%;padding-left:24px;font-size:14px;font-weight:400;color:var(--meta)}
+@media (min-width:760px){.gloss-hint{flex-basis:auto;padding-left:0}}
+.gloss-list{margin:0;padding:4px 0 24px;display:grid;grid-template-columns:minmax(0,1fr);gap:0 40px}
+@media (min-width:860px){.gloss-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.gloss-item{display:grid;grid-template-columns:minmax(0,1fr);gap:4px;padding:12px 0;border-bottom:1px solid var(--hair);break-inside:avoid}
+@media (min-width:640px){.gloss-item{grid-template-columns:150px minmax(0,1fr);gap:16px}}
+.gloss-item dt{font:600 15px/1.35 var(--font)}
+.gloss-item dd{margin:0;color:var(--meta);font-size:14.5px;line-height:1.45}
+
 .controls{display:grid;gap:14px;padding-block:44px 8px}
 .row{display:flex;align-items:center;gap:10px 12px;min-width:0}
 .label{flex:none;font:500 16px var(--font);min-width:64px}
@@ -271,6 +307,18 @@ footer{border-top:1px solid var(--line)}
   <p class="stats" id="stats">&nbsp;</p>
 </section>
 
+<section class="wrap guide" id="start" aria-labelledby="start-title" hidden>
+  <details class="guide-box" id="start-box" open>
+    <summary><h2 id="start-title">С чего начать</h2><span class="guide-toggle" aria-hidden="true"></span></summary>
+    <p class="guide-lede">Берёте шаблон, меняете поля в <span class="slot">[скобках]</span> на свою сцену и сверяетесь с правилами. Незнакомое слово ищите в словаре ниже.</p>
+    <ol class="steps" id="steps"></ol>
+  </details>
+  <details class="gloss" id="glossary">
+    <summary><span>Словарь</span> <span class="n" id="gloss-count"></span><span class="gloss-hint">что значат плейт, @тег, LOCKS, FOV и другие слова из карточек</span></summary>
+    <dl class="gloss-list" id="gloss-list"></dl>
+  </details>
+</section>
+
 <div class="wrap controls">
   <div class="row">
     <span class="label">Раздел:</span>
@@ -327,6 +375,7 @@ footer{border-top:1px solid var(--line)}
     <div class="menu-about">
       <p>Памятка канала <a href="https://t.me/design_remeslo" target="_blank" rel="noopener noreferrer">«дизайн ремесленник»</a> для тех, кто делает видео в нейросетях: что писать в промт, какую модель брать и почему кадр выходит не таким.</p>
       <p>Промты пишем на английском. Поля в [скобках] меняем под свою сцену, шапки стилей вставляем дословно. Угол обзора — в градусах, скорость камеры — в км/ч.</p>
+      <p>Впервые здесь? <a href="#start" data-guide="start">С чего начать</a> и <a href="#glossary" data-guide="glossary">словарь терминов</a>.</p>
       <p>Пара к «Закромам ремесленника»: <a href="https://a-revazyan.github.io/zakroma-remeslennika/" target="_blank" rel="noopener noreferrer">полезные сайты, архивы и нейросети для дизайнера</a>.</p>
     </div>
   </div>
@@ -785,26 +834,63 @@ footer{border-top:1px solid var(--line)}
   function toast(msg) { var t = $("#toast"); t.textContent = msg; t.hidden = false; clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.hidden = true; }, 3200); }
 
   /* ---------- ссылки на карточку и тему: #templates/t07, #rules/Звук ---------- */
+  /* также #templates/Листы — тема раздела, #start и #glossary — блок для новичков */
+  function route(h, scroll) {
+    if (h === "start" || h === "glossary") { var g = $(h === "start" ? "#start-box" : "#glossary"); if (!g || $("#start").hidden) return; g.open = true; g.scrollIntoView(); return; }
+    var i = h.indexOf("/"), sec = i < 0 ? h : h.slice(0, i), rest = i < 0 ? "" : h.slice(i + 1);
+    try { rest = decodeURIComponent(rest); } catch (e) { rest = ""; }
+    if (ORDER.indexOf(sec) < 0) return;
+    if (rest && sec !== "rules" && itemsOf(sec).some(function (x) { return x.id === rest; })) { openSheet(sec, rest, !scroll); return; }
+    state.sec = sec; state.topic = rest && topicsFor(sec).indexOf(rest) > -1 ? rest : "all";
+    if (scroll) { state.q = ""; qInput.value = ""; state.fav = false; }
+    render();
+    if (scroll) $(".controls").scrollIntoView();
+  }
   function fromHash() {
     var h = (location.hash || "").slice(1);
     if (!$("#sheet").hidden && !/^(templates|models|moves)\/./.test(h)) { $("#sheet").hidden = true; document.body.style.overflow = ""; current = null; }
     if (!h) return;
-    var i = h.indexOf("/"), sec = i < 0 ? h : h.slice(0, i), rest = i < 0 ? "" : h.slice(i + 1);
-    try { rest = decodeURIComponent(rest); } catch (e) { rest = ""; }
-    if (ORDER.indexOf(sec) < 0) return;
-    if (sec === "rules") { state.sec = "rules"; state.topic = data.rcats.indexOf(rest) > -1 ? rest : "all"; render(); return; }
-    if (rest && itemsOf(sec).some(function (x) { return x.id === rest; })) { openSheet(sec, rest, true); return; }
-    state.sec = sec; state.topic = "all"; render();
+    route(h, false);
   }
   window.addEventListener("hashchange", fromHash);
 
+  /* ---------- с чего начать и словарь ---------- */
+  function renderGuide() {
+    var st = data.start || [], gl = data.glossary || [];
+    $("#start").hidden = !st.length && !gl.length;
+    var ol = $("#steps"); ol.replaceChildren(); ol.hidden = !st.length;
+    st.forEach(function (s) {
+      var li = el("li", "step"); li.append(el("h3", null, s.title), el("p", null, s.text));
+      var lk = el("div", "step-links");
+      (s.links || []).forEach(function (l) {
+        if (!l || typeof l.href !== "string" || l.href.charAt(0) !== "#") return;
+        var a = el("a", null, l.label); a.href = l.href;
+        a.addEventListener("click", function (e) { e.preventDefault(); route(l.href.slice(1), true); });
+        lk.append(a);
+      });
+      if (lk.childNodes.length) li.append(lk);
+      ol.append(li);
+    });
+    var dl = $("#gloss-list"); dl.replaceChildren();
+    gl.forEach(function (g) { var d = el("div", "gloss-item"); d.append(el("dt", null, g.term), el("dd", null, g.def)); dl.append(d); });
+    $("#gloss-count").textContent = gl.length ? String(gl.length) : "";
+    $("#glossary").hidden = !gl.length;
+  }
+  var GUIDEKEY = "pult:guide";
+  try { if (localStorage.getItem(GUIDEKEY) === "closed") $("#start-box").open = false; } catch (e) {}
+  $("#start-box").addEventListener("toggle", function () { try { localStorage.setItem(GUIDEKEY, this.open ? "open" : "closed"); } catch (e) {} });
+  document.querySelectorAll("[data-guide]").forEach(function (a) {
+    a.addEventListener("click", function (e) { e.preventDefault(); closeMenu(); route(a.getAttribute("data-guide"), true); });
+  });
+
+  renderGuide();
   render();
   fromHash();
   /* свежие данные, если рядом лежит data.json */
   if (location.protocol !== "file:") {
     fetch("data.json", { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; }).then(function (j) {
       if (!j || !j.sections || JSON.stringify(j) === JSON.stringify(data)) return;
-      data = j; render(); if (current) openSheet(current.sec, current.id, true);
+      data = j; renderGuide(); render(); if (current) openSheet(current.sec, current.id, true);
     }).catch(function () {});
   }
 })();
